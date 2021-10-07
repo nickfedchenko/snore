@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RecordView: View {
+    @EnvironmentObject var DS : DataStorage
+    
     var body: some View {
         VStack{
             Spacer()
@@ -16,14 +18,29 @@ struct RecordView: View {
                 VStack{
                     Text("12:35").font(.system(size: 36, weight: .medium)).foregroundColor(.white)
                     Text("Monday").font(.system(size: 19, weight: .medium)).foregroundColor(.white)
-                    Image("RecPlay")
+                    
+                    Button(action: {
+                        if DS.soundAnalyzer.audioRecorder.isRecording {
+                            DS.soundAnalyzer.startRecording()
+                        } else {
+                            DS.soundAnalyzer.startRecording()
+                        }
+                    }){
+                        Image(DS.soundAnalyzer.audioRecorder.isRecording ? "RecPause" : "RecPlay")
+                    }
                     Spacer()
                 }
                 Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
             }.fixedSize()
             
             HStack{
-                Button(action: {}){
+                Button(action: {
+                    if DS.soundAnalyzer.audioRecorder.isRecording {
+                        DS.soundAnalyzer.stopRecording()
+                    } else {
+                        DS.soundAnalyzer.startRecording()
+                    }
+                }){
                     ZStack{
                         RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
                         HStack{

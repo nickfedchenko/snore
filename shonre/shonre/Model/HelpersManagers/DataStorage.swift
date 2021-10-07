@@ -9,8 +9,10 @@ import Foundation
 
 class DataStorage : ObservableObject {
     
+    @Published var soundAnalyzer : SoundAnalyzer
+    
     init() {
-        
+        self.soundAnalyzer = SoundAnalyzer()
     }
     
 }

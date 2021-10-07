@@ -41,10 +41,38 @@ struct ColorSegment : Identifiable{
     var id = UUID()
 }
 
-enum ColorType {
-    case Red
-    case Yellow
-    case White
+enum ColorType : String {
+    case Red = "Red"
+    case Yellow = "Yellow"
+    case White = "White"
+    
+    func getColor() -> Color {
+        switch self {
+        case .Red:
+            return Color.red
+        case .Yellow:
+            return Color.yellow
+        case .White:
+            return Color.white
+        }
+    }
+    
+    init(volume: Float){
+        if volume < 0.4 {
+            self = .White
+            return
+        }
+        
+        if volume < 0.8 {
+            self = .Yellow
+            return
+        }
+        if volume > 0.8 {
+            self = .White
+            return
+        }
+        self = .White
+    }
 }
 
 extension ChartPart {
