@@ -14,36 +14,71 @@ struct ResultsView: View {
     @State var activeSound : SingleWaveSoundPlayer? = nil
     @State var isLinkActive : Bool = false
     
+    @State var toDeleteSound : Sound?
+    @State var toDelete : Bool = false
+    
     var body: some View {
         NavigationView{
-            ScrollView{
-                LazyVStack{
-                    HStack{
-                        Text("Monday,02.09.2021").font(.system(size: 19, weight: .medium)).foregroundColor(.white)
-                        Spacer()
-                    }.padding(.horizontal)
-                    
-                    ForEach(sounds){ sound in
-                        RecordListComponent(player: DS.soundAnalyzer.soundPlayer.getPlayer(for: sound), activeSound : $activeSound, isLinkActive : $isLinkActive)
+            ZStack{
+                ScrollView{
+                        ForEach(sounds){ sound in
+                            RecordListComponent(player: DS.soundAnalyzer.soundPlayer.getPlayer(for: sound), activeSound : $activeSound, isLinkActive : $isLinkActive, toDeleteSound : $toDeleteSound, toDelete: $toDelete)
+                        }
+                    if activeSound != nil {
+                        NavigationLink(destination: SingleSoundView(player: activeSound!), isActive: $isLinkActive){
+                            EmptyView()
+                        }
                     }
-                    
                     Spacer()
                     HStack{
                         Spacer()
                     }
-                }
+                }.navigationBarTitle(isLinkActive ? "Results" : "", displayMode: .automatic).navigationBarHidden(true).background(Color("Back").ignoresSafeArea())
                 
-                if activeSound != nil {
-                    NavigationLink(destination: SingleSoundView(player: activeSound!), isActive: $isLinkActive){
-                        EmptyView()
+                if toDelete {
+                    ZStack(alignment: .center){
+                        Rectangle().foregroundColor(.black.opacity(0.3))
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 19).frame(width: 323, height: 212).foregroundColor(.white)
+                            VStack{
+                                Text("Are you sure you want to delete the entry?").frame(width: 220).multilineTextAlignment(.center).font(.system(size: 22, weight: .medium))
+                                
+                                Button(action: {
+                                    if toDeleteSound != nil {
+                                        DS.soundAnalyzer.deleteSound(sound: toDeleteSound!)
+                                    }
+                                    withAnimation{
+                                        toDelete = false
+                                    }
+                                }){
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 38).foregroundColor(Color("ButtonRed")).frame(width: 206, height: 47)
+                                        Text("Yes").foregroundColor(.white)
+                                    }
+                                }
+                                Button(action: {
+                                    withAnimation{
+                                        toDelete = false
+                                    }
+                                }){
+                                    Text("Cancel").foregroundColor(Color("TextGray"))
+                                    
+                                }
+                                
+                            }
+                        }
                     }
                 }
-            }.navigationBarTitle("", displayMode: .automatic).navigationBarHidden(true).background(Color("Back").ignoresSafeArea())
+            }
         }.onAppear(perform: {
             self.sounds = DS.soundAnalyzer.sounds
         }).onReceive(DS.soundAnalyzer.$sounds, perform: {val in
             self.sounds = val
         })
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+//        numbers.remove(atOffsets: offsets)
     }
 }
 

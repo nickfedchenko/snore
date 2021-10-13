@@ -10,8 +10,9 @@ import SwiftUI
 struct SoundScrollPlayComponent: View {
     @ObservedObject var player : SingleWaveSoundPlayer
     @State var proggres : Double = 0.0
+    @State var timeText : String = "00:00"
     
-    let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack{
@@ -52,14 +53,13 @@ struct SoundScrollPlayComponent: View {
                         self.proggres = self.player.getProggres()
                         player.isPlaying = true
                     })).onReceive(timer) {_ in
-                        if player.isPlaying{
-                            self.proggres = self.player.getProggres()
-                        }
+                        self.proggres = self.player.getProggres()
+                        self.timeText = self.player.getCurrentTime()
                     }
                 }
             }.frame(height:16)
             HStack {
-                Text(player.timeText).foregroundColor(Color.white).font(.system(size: 14, weight: .light))
+                Text(timeText).foregroundColor(Color.white).font(.system(size: 14, weight: .light))
                 Spacer()
                 Text(player.durationText).foregroundColor(Color.white).font(.system(size: 14, weight: .light))
             }

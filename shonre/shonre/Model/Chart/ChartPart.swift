@@ -57,18 +57,29 @@ enum ColorType : String {
         }
     }
     
+    func getTextColor() -> Color {
+        switch self {
+        case .Red:
+            return Color.black
+        case .Yellow:
+            return Color.black
+        case .White:
+            return Color.black
+        }
+    }
+    
     init(volume: Float){
-        if volume < 0.4 {
+        if volume < 0.1 {
             self = .White
             return
         }
         
-        if volume < 0.8 {
+        if volume < 0.2 {
             self = .Yellow
             return
         }
-        if volume > 0.8 {
-            self = .White
+        if volume > 0.3 {
+            self = .Red
             return
         }
         self = .White
@@ -79,6 +90,8 @@ extension ChartPart {
     static var parts12h : [ChartPart] = [ChartPart(label: "12h"), ChartPart(label: "10h"), ChartPart(label: "8h"), ChartPart(label: "6h"), ChartPart(label: "4h"), ChartPart(label: "2h"), ChartPart(label: "0h")]
     
     static var parts4h : [ChartPart] = [ChartPart(label: "4h"), ChartPart(label: "3h"), ChartPart(label: "2h"), ChartPart(label: "1h"), ChartPart(label: "0h")]
+    
+    static var parts19to1h : [ChartPart] = [ChartPart(label: "19h"), ChartPart(label: "20h"), ChartPart(label: "21h"), ChartPart(label: "22h"), ChartPart(label: "23h"), ChartPart(label: "24h"), ChartPart(label: "1h")]
 }
 
 

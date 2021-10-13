@@ -21,6 +21,7 @@ class SoundAnalyzer : ObservableObject {
     init() {
         self.audioRecorder = AudioRecorder()
         self.sounds.append(contentsOf: CDH.loadSounds())
+        self.sounds.append(contentsOf: Sound.data)
         self.sounds.sort(by: {$0.started > $1.started})
         
         for sound in sounds{
@@ -63,13 +64,28 @@ class SoundAnalyzer : ObservableObject {
         print("startRecording")
     }
     
+    func getTodaysCount() -> Int {
+        let today = Date()
+        let calendar = Calendar.current
+        
+        var count = 0
+        for sound in self.sounds {
+            
+            if calendar.numberOfDaysBetween(sound.started, and: today) == 1 {
+                count += 1
+            }
+        }
+        
+        return count + 1
+    }
+    
     func stopRecording(){
         self.audioRecorder.isRecording = false
         audioRecorder.finishRecording(success: true)
         
         let fileName = audioRecorder.audioFilename
         
-        let newSound = Sound(id: UUID(), samples: [Float](), length: 1, timeInBed: 1, started: audioRecorder.dateStartRecording ?? Date(), stoped: audioRecorder.dateStopRecording ?? Date(), fileName: audioRecorder.fileName!)
+        let newSound = Sound(id: UUID(), samples: [Float](), timeInBed: 1, started: audioRecorder.dateStartRecording ?? Date(), stoped: audioRecorder.dateStopRecording ?? Date(), fileName: audioRecorder.fileName!, inDayCound: getTodaysCount())
         
         audioRecorder.dateStartRecording = nil
         audioRecorder.dateStopRecording = nil
@@ -94,6 +110,39 @@ class SoundAnalyzer : ObservableObject {
         }
     }
     
-
+    func deleteSound(sound : Sound) {
+        let index = sounds.firstIndex(where: {$0.id == sound.id})
+        
+        if index != nil {
+            sounds.remove(at: index!)
+        }
+        CDH.deleteSound(sound)
+    }
     
+    
+    func getSleepDuration() -> [ChartColumn]{
+        return CalcSoundStaticics.getSleepDuration(self.sounds)
+    }
+    
+    func getSleepTime() -> [ChartColumn]{
+        return CalcSoundStaticics.getSleepTime(self.sounds)
+    }
+    
+    func getSnoreScore() -> [ChartColorColumn]{
+        return CalcSoundStaticics.getSnoreScore(self.sounds)
+    }
+    
+    func getAverageSleepTime() -> String {
+        return CalcSoundStaticics.getAverageSleepTime(self.sounds)
+    }
+}
+
+extension Calendar {
+    func numberOfDaysBetween(_ from: Date, and to: Date) -> Int {
+        let fromDate = startOfDay(for: from)
+        let toDate = startOfDay(for: to)
+        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate)
+        
+        return numberOfDays.day! + 1 // <1>
+    }
 }

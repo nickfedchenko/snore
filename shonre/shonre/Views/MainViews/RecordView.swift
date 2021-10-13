@@ -10,36 +10,54 @@ import SwiftUI
 struct RecordView: View {
     @EnvironmentObject var DS : DataStorage
     
+    @State var isRecording : Bool = false
+    @State var sec : Double = 0.0
+    @State var secTime : String = "00:00"
+    
+    @State var day : String = ""
+    @State var timeText : String = ""
+    @State var showSensitivity : Bool = false
+    
+    @State var senseLevel : Double = 0.5
+    
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack{
             Spacer()
             Text("Sleep Control").font(.system(size: 30, weight: .medium)).foregroundColor(.white).padding(.vertical)
+            
             ZStack{
+                Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
                 VStack{
-                    Text("12:35").font(.system(size: 36, weight: .medium)).foregroundColor(.white)
-                    Text("Monday").font(.system(size: 19, weight: .medium)).foregroundColor(.white)
+                    Text(timeText).font(.system(size: 36, weight: .medium)).foregroundColor(.white)
+                    Text(day).font(.system(size: 19, weight: .medium)).foregroundColor(.white)
                     
                     Button(action: {
                         if DS.soundAnalyzer.audioRecorder.isRecording {
-                            DS.soundAnalyzer.startRecording()
+                            DS.soundAnalyzer.stopRecording()
                         } else {
+                            sec = 0.0
+                            setSecTime()
                             DS.soundAnalyzer.startRecording()
                         }
                     }){
-                        Image(DS.soundAnalyzer.audioRecorder.isRecording ? "RecPause" : "RecPlay")
-                    }
+                        ZStack{
+                            Image(isRecording ? "RecPause" : "RecPlay")
+                            if isRecording {
+                                Text(secTime).foregroundColor(.white).font(.system(size: 40, weight: .medium)).multilineTextAlignment(.center).frame(width: 200)
+                            }
+                        }
+                    }.onReceive(DS.soundAnalyzer.audioRecorder.$isRecording, perform: {val in
+                        self.isRecording = DS.soundAnalyzer.audioRecorder.isRecording
+                    })
                     Spacer()
                 }
-                Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
             }.fixedSize()
             
             HStack{
                 Button(action: {
-                    if DS.soundAnalyzer.audioRecorder.isRecording {
-                        DS.soundAnalyzer.stopRecording()
-                    } else {
-                        DS.soundAnalyzer.startRecording()
-                    }
+                    showSensitivity = true
                 }){
                     ZStack{
                         RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
@@ -50,7 +68,9 @@ struct RecordView: View {
                     }
                 }
                 Spacer()
-                Button(action: {}){
+                Button(action: {
+                    
+                }){
                     ZStack{
                         RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
                         HStack{
@@ -61,26 +81,67 @@ struct RecordView: View {
                 }
             }.frame(width: 283)
             
-            Button(action: {}){
-                ZStack{
-                    RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(width: 283, height: 71)
-                    HStack{
-                        Image("AlarmRec")
-                        Text("Alarm clock").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
-                    }
-                }
-            }
+//            Button(action: {
+//                
+//            }){
+//                ZStack{
+//                    RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(width: 283, height: 71)
+//                    HStack{
+//                        Image("AlarmRec")
+//                        Text("Alarm clock").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
+//                    }
+//                }
+//            }
             
             Spacer()
             HStack{
                 Spacer()
             }
-        }.background(Color("Back").ignoresSafeArea())
+        }.background(Color("Back").ignoresSafeArea()).onReceive(timer, perform: {_ in
+            sec += 0.05
+            setTime()
+            setSecTime()
+        }).onAppear(perform: {
+            setTime()
+        }).sheet(isPresented: $showSensitivity, content: {
+            NavigationView{
+                SensitivyLevelView(senseLevel: $senseLevel).navigationBarTitle("Sensitivy", displayMode: .inline).toolbar(content: {
+                    Button(action: {showSensitivity = false}, label: {
+                        Text("Close")
+                    })
+                })
+            }
+        })
     }
+    
+    func setTime() {
+        let today = Date()
+        let formatter1 = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter1.dateFormat = "HH:mm"
+        formatter2.dateFormat = "EEEE"
+        
+        self.day = formatter1.string(from: today)
+        self.timeText = formatter2.string(from: today)
+    }
+    
+    func setSecTime() {
+        let h = Int(sec) / 60
+        let s = Int(sec) % 60
+        secTime = h.get2simb() + ":" + s.get2simb()
+    }
+    
 }
 
 struct RecordView_Previews: PreviewProvider {
     static var previews: some View {
         RecordView()
+    }
+}
+
+
+extension Int {
+    func get2simb() -> String {
+        return self > 9 ? "\(self)" : "0\(self)"
     }
 }

@@ -19,10 +19,12 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
     @Published var durationText : String = "00:00"
     
     var cancellables = Set<AnyCancellable>()
+    var timer : Timer?
     
     init(sound : Sound){
         self.sound = sound
         setAudio()
+        durationText = getFullTime()
         
         $isPlaying.sink(receiveValue: {val in
             if val {
@@ -31,6 +33,7 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
                 self.pausePlay()
             }
         }).store(in: &cancellables)
+        
     }
     
     func pausePlay() {
@@ -80,4 +83,25 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
         avPlayer!.play()
     }
     
+    func getFullTime() -> String {
+        let m : Int = Int(self.sound.length) / 60
+        let s : Int = Int(self.sound.length) % 60
+        return (m > 9 ? "\(m)" : "0\(m)") + ":" + (s > 9 ? "\(s)" : "0\(s)")
+    }
+    
+    func getCurrentTime() -> String {
+        if avPlayer != nil {
+            let currentTime : Double = Double(avPlayer!.currentTime)
+            let m : Int = Int(currentTime) / 60
+            let s : Int = Int(currentTime) % 60
+            return (m > 9 ? "\(m)" : "0\(m)") + ":" + (s > 9 ? "\(s)" : "0\(s)")
+        }
+        return "00:00"
+    }
+    
+}
+
+
+extension SingleWaveSoundPlayer {
+    static var data : [SingleWaveSoundPlayer] = [SingleWaveSoundPlayer(sound: Sound.data[0])]
 }

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct PlayerChartComponent: View {
     @ObservedObject var player : SingleWaveSoundPlayer
+    let isActive : Bool
+    
     @State var proggres : Double = 0.0
-    let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
     let countWaves : Int = 50
     
@@ -27,10 +29,13 @@ struct PlayerChartComponent: View {
                         }
                     }
                 }.frame(width: proxy.size.width, height: height)
-                Rectangle().foregroundColor(Color.white.opacity(0.5)).frame(width: 10, height: height).offset(x: CGFloat(proggres / 100.0) * UIScreen.main.bounds.width - 5)
-            }.frame(width: proxy.size.width, height: height).background(Color.blue).clipped().onReceive(timer, perform: {_ in
-                self.proggres = player.getProggres()
-                print(self.proggres)
+                if isActive {
+                    Rectangle().foregroundColor(Color.white.opacity(0.5)).frame(width: 10, height: height).offset(x: CGFloat(proggres / 100.0) * proxy.size.width - 5)
+                }
+            }.frame(width: proxy.size.width, height: height).clipped().onReceive(timer, perform: {_ in
+                if isActive {
+                    self.proggres = player.getProggres()
+                }
             })
         }.frame(height: height)
     }

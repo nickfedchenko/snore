@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct TrendsColorGraphComponent: View {
+    
+    var tittle : String
+    var subtittle : AnyView
+    
     var chartParts : [ChartPart]
     var chartColumn : [ChartColorColumn]
     var dividersInItem : Int
@@ -19,8 +23,8 @@ struct TrendsColorGraphComponent: View {
         VStack{
             HStack{
                 VStack(alignment: .leading){
-                    Text("Sleep Time").foregroundColor(.white).font(.system(size: 20, weight: .medium))
-                    Text("Average is 7 hrs 21 min").foregroundColor(.white).font(.system(size: 16, weight: .light))
+                    Text(tittle).foregroundColor(.white).font(.system(size: 20, weight: .medium))
+                    subtittle
                 }
                 Spacer()
             }
@@ -39,6 +43,6 @@ struct TrendsColorGraphComponent: View {
 
 struct TrendsColorGraphComponent_Previews: PreviewProvider {
     static var previews: some View {
-        TrendsColorGraphComponent(chartParts: ChartPart.parts4h, chartColumn: ChartColorColumn.part3, dividersInItem: 3)
+        TrendsColorGraphComponent(tittle : "Sleep Time", subtittle: AnyView(EmptyView()), chartParts: ChartPart.parts4h, chartColumn: ChartColorColumn.part3, dividersInItem: 3)
     }
 }

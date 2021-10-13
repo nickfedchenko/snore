@@ -14,13 +14,13 @@ struct ChartColorColumnComponent: View {
     let maxCharHeight : CGFloat
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             VStack(spacing: 0){
                 ForEach(segments){ segment in
                     Rectangle().frame(width:16, height: maxCharHeight * segment.percent).foregroundColor(getColor(segment.type)).padding(0)
                 }
             }
-            Text(legend).font(.system(size: 13, weight: .medium)).foregroundColor(Color("ChartLegend"))
+            Text(legend).padding(.top, 5).font(.system(size: 13, weight: .medium)).foregroundColor(Color("ChartLegend"))
         }.frame(width: 40)
     }
     

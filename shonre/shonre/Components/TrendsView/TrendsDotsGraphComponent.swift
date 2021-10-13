@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TrendsDotsGraphComponent: View {
+    var tittle : String
+    var subtittle : AnyView
+    
     var chartParts : [ChartPart]
     var chartColumn : [ChartColumn]
     var dividersInItem : Int
@@ -19,8 +22,8 @@ struct TrendsDotsGraphComponent: View {
         VStack{
             HStack{
                 VStack(alignment: .leading){
-                    Text("Sleep Time").foregroundColor(.white).font(.system(size: 20, weight: .medium))
-                    Text("Average is 7 hrs 21 min").foregroundColor(.white).font(.system(size: 16, weight: .light))
+                    Text(tittle).foregroundColor(.white).font(.system(size: 20, weight: .medium))
+                    subtittle
                 }
                 Spacer()
             }
@@ -66,7 +69,7 @@ struct TrendsDotsGraphComponent: View {
 
 struct TrendsDotsGraphComponent_Previews: PreviewProvider {
     static var previews: some View {
-        TrendsDotsGraphComponent(chartParts: ChartPart.parts4h, chartColumn: ChartColumn.parts7, dividersInItem: 3)
+        TrendsDotsGraphComponent(tittle : "Sleep Time", subtittle: AnyView(EmptyView()), chartParts: ChartPart.parts4h, chartColumn: ChartColumn.parts7, dividersInItem: 3)
     }
 }
 

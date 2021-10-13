@@ -44,6 +44,7 @@ class WaveSoundCDH{
             oldSound[0].timeNoSnoring = sound.timeNoSnoring
             oldSound[0].timeSnoringRed = sound.timeSnoringRed
             oldSound[0].timeSnoringYellow = sound.timeSnoringYellow
+            oldSound[0].inDayCound = Int64(sound.inDayCound)
             
             let request = SingleWaveCore.fetchRequest() as NSFetchRequest<SingleWaveCore>
             request.relationshipKeyPathsForPrefetching = ["mixeCore"]
@@ -79,6 +80,7 @@ class WaveSoundCDH{
             newSound.timeNoSnoring = sound.timeNoSnoring
             newSound.timeSnoringRed = sound.timeSnoringRed
             newSound.timeSnoringYellow = sound.timeSnoringYellow
+            newSound.inDayCound = Int64(sound.inDayCound)
             
             
             for wave in sound.waves{
@@ -143,7 +145,7 @@ class WaveSoundCDH{
                 newWaves.append(newSindgleWave)
             }
             
-            let newSound = Sound(id: soundCore.id ?? UUID(), waves: newWaves.sorted(by: {$0.number < $1.number}), length: soundCore.length, timeInBed: soundCore.timeInBed, started: soundCore.started ?? Date(), stoped: soundCore.stoped ?? Date(), fileName: soundCore.fileName ?? "")
+            let newSound = Sound(id: soundCore.id ?? UUID(), waves: newWaves.sorted(by: {$0.number < $1.number}), timeInBed: soundCore.timeInBed, started: soundCore.started ?? Date(), stoped: soundCore.stoped ?? Date(), fileName: soundCore.fileName ?? "", inDayCound: Int(soundCore.inDayCound))
             outSounds.append(newSound)
             
         }
