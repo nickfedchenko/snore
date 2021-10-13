@@ -17,16 +17,25 @@ class ApphudHelper: ObservableObject {
     
     var paywalls : [ApphudPaywall]?
     
+    var allProducts : [ApphudProduct] = [ApphudProduct]()
     var product : ApphudProduct?
     var timer : Timer?
     
     //
-    @Published var purchaseId : String?
+    let userdefault = UserDefaults.standard
     
     //Сохраяем цены
-    var SKtrial_time : String = ""
-    var SKprice : String = ""
-    var SKtime : String = ""
+    @Published var SKtrial_time1 : String = ""
+    @Published var SKprice1 : String = ""
+    @Published var SKtime1 : String = ""
+    @Published var purchaseId1 : String?
+    
+    
+    @Published var Text1 : String = " "
+    @Published var Tittle1 : String = " "
+    @Published var ButtonText : String = " "
+    @Published var Price1 : String = " "
+    
     
     init() {
         Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
@@ -42,13 +51,11 @@ class ApphudHelper: ObservableObject {
             }
         }
 
-        
         if paywalls != nil {
             self.product = paywalls![0].products[0]
         }
         
         self.isPremium = Apphud.hasActiveSubscription()
-        
         
         getPayWalls()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -58,28 +65,59 @@ class ApphudHelper: ObservableObject {
         
         let userdefault = UserDefaults.standard
         if userdefault.bool(forKey: "SKwasSaved") {
-            self.SKtrial_time = userdefault.string(forKey: "SKtrial_time") ?? ""
-            self.SKprice = userdefault.string(forKey: "SKprice")  ?? ""
-            self.SKtime = userdefault.string(forKey: "SKtime") ?? ""
-            self.purchaseId = userdefault.string(forKey: "SKprodID") ?? nil
+            self.SKtrial_time1 = userdefault.string(forKey: "SKtrial_time") ?? ""
+            self.SKprice1 = userdefault.string(forKey: "SKprice")  ?? ""
+            self.SKtime1 = userdefault.string(forKey: "SKtime") ?? ""
+            self.purchaseId1 = userdefault.string(forKey: "SKprodID") ?? nil
+            
+            //
+            self.Text1 = userdefault.string(forKey: "Tittle1") ?? ""
+            self.Tittle1 = userdefault.string(forKey: "Tittle1") ?? ""
+            self.Price1 = userdefault.string(forKey: "Price1") ?? ""
+            self.ButtonText = userdefault.string(forKey: "ButtonText") ?? ""
+
         }
         
-        self.pwTitleText = self.getPWTitle()
+        upadtePayWall()
+    }
+    
+    func choosePWText() {
+        let langStr = Locale.current.languageCode
+        for text in payWallsText {
+            if text.lang == langStr {
+                curPayWallText = text
+                userdefault.set(purchaseId1, forKey: "SKprodID")
+                
+                self.Text1 = curPayWallText.text
+                self.Tittle1 = curPayWallText.title
+                self.Price1 = curPayWallText.price
+                self.ButtonText = curPayWallText.ButtonText
+                self.purchaseId1 = curPayWallText.purchaseId
+                
+                userdefault.set(self.Text1, forKey: "Text1")
+                userdefault.set(self.Tittle1, forKey: "Tittle1")
+                userdefault.set(self.Price1, forKey: "Price1")
+                userdefault.set(self.ButtonText, forKey: "ButtonText")
+                userdefault.set(self.purchaseId1, forKey: "purchaseId1")
+            }
+        }
     }
     
     private func getPayWalls() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] timer in
             if let self = self{
-                if self.paywalls == nil {
+                if self.paywalls == nil && self.purchaseId1 != nil {
                     self.upadtePayWall()
-                    let langStr = Locale.current.languageCode
-                    for text in self.payWallsText {
-                        if text.lang == langStr {
-                            self.curPayWallText = text
-                        }
-                    }
                 }
             }
+        }
+    }
+    
+    func quickPurchase(selected : Int) {
+        self.product = self.allProducts.first(where: {$0.productId == purchaseId1})
+        if self.product != nil {
+            print("Quick Pay!")
+            self.purchase(product: self.product!)
         }
     }
     
@@ -98,40 +136,19 @@ class ApphudHelper: ObservableObject {
     func upadtePayWall() {
         self.paywalls = Apphud.paywalls
         if paywalls != nil {
-            if self.purchaseId == nil {
-                print("upadtePayWall YESS")
-                for wall in paywalls! {
-                    for prod in wall.products {
-                        print(prod.productId)
-                        if prod.skProduct != nil {
-                            print("upadtePayWall SKProd YESS")
-                            self.product = prod
-                            self.saveSKProduct(prod)
-                            self.pwTitleText = self.getPWTitle()
-                        }
-                    }
-                }
-            } else {
-                for wall in paywalls! {
-                    for prod in wall.products {
-                        if prod.skProduct != nil {
-                            if prod.productId == self.purchaseId {
-                                self.product = prod
-                                self.saveSKProduct(prod)
-                                self.pwTitleText = self.getPWTitle()
-                                return
-                            }
-                        }
+            for wall in paywalls! {
+                for prod in wall.products {
+                    print(prod.productId)
+                    if prod.skProduct != nil {
+                        self.allProducts.append(prod)
                     }
                 }
             }
+            self.saveSKProduct()
         }
     }
     
-    func setpurchaseId() {
-        self.purchaseId = payWallsText[0].purchaseId
-        self.upadtePayWall()
-    }
+    
     
     /// Восстановть покупки
     func restore(){
@@ -144,7 +161,6 @@ class ApphudHelper: ObservableObject {
            }
         }
     }
-    
     
     func hasActiveSubscription () -> Bool {
         return Apphud.hasActiveSubscription()
@@ -160,46 +176,37 @@ class ApphudHelper: ObservableObject {
         }
         return payWallsText[0]
     }
+
     
-    func getPWTitle() -> String {
-        let tittle = self.getPayWallText().title
+    
+    func saveSKProduct() {
         
-        var free_time = SKtrial_time
-        var price = SKprice
-        var time = SKtime
-        
-        if product != nil {
-            free_time = "\(product!.skProduct!.introductoryPrice!.subscriptionPeriod.numberOfUnits)"
-            price = "\(product!.skProduct!.price.stringValue) \(product!.skProduct!.priceLocale.currencySymbol ?? "")"
-            time = "\(product!.skProduct!.subscriptionPeriod!.numberOfUnits)"
+        for prod in self.allProducts {
+            var trial_time = ""
+            var time = ""
+            
+            
+            let price = "\(prod.skProduct!.price.stringValue) \(prod.skProduct!.priceLocale.currencySymbol ?? "")"
+            
+            if prod.skProduct!.introductoryPrice != nil{
+                trial_time = "\(prod.skProduct!.introductoryPrice!.subscriptionPeriod.numberOfUnits)"
+            }
+            
+            
+            time = "\(prod.skProduct!.subscriptionPeriod!.numberOfUnits)"
+            
+            if prod.productId == purchaseId1 {
+                self.SKprice1 = price
+                self.SKtime1 = time
+                self.SKtrial_time1 = trial_time
+                
+                userdefault.set(true, forKey: "SKwasSaved")
+                userdefault.set(SKprice1, forKey: "SKprice")
+                userdefault.set(SKtrial_time1, forKey: "SKtrial_time")
+                userdefault.set(SKtime1, forKey: "SKtime")
+            }
+            
         }
-        
-        let newTettle = tittle.replacingOccurrences(of: "%free_time%", with: free_time).replacingOccurrences(of: "%price%", with: price).replacingOccurrences(of: "%time%", with: time)
-        return newTettle
     }
     
-    func saveSKProduct(_ prod: ApphudProduct) {
-        let skProduct = prod.skProduct!
-        self.SKprice = "\(skProduct.price.stringValue) \(skProduct.priceLocale.currencySymbol ?? "")"
-        
-        if skProduct.introductoryPrice != nil{
-            self.SKtrial_time = "\(skProduct.introductoryPrice!.subscriptionPeriod.numberOfUnits)"
-        }
-        
-        if skProduct.subscriptionPeriod != nil{
-            self.SKtime = "\(skProduct.subscriptionPeriod!.numberOfUnits)"
-        }
-        
-        if skProduct.productIdentifier != nil{
-            self.purchaseId = "\(skProduct.productIdentifier)"
-        }
-        
-        let userdefault = UserDefaults.standard
-        userdefault.set(true, forKey: "SKwasSaved")
-        userdefault.set(SKprice, forKey: "SKprice")
-        userdefault.set(SKtrial_time, forKey: "SKtrial_time")
-        userdefault.set(SKtime, forKey: "SKtime")
-        userdefault.set(purchaseId, forKey: "SKprodID")
-        print("prod saved")
-    }
 }

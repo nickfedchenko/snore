@@ -124,10 +124,10 @@ class Sound : Identifiable, ObservableObject {
         return out
     }
     
-    func addSamples(samples : [Float]){
+    func addSamples(samples : [Float], level : Double){
         var addWawes : [SingleWave] = [SingleWave]()
         for i in 0..<samples.count{
-            addWawes.append(SingleWave(id: UUID(), volume: 1.0 - samples[i], number: i, color: ColorType(volume: 1.0 - samples[i])))
+            addWawes.append(SingleWave(id: UUID(), volume: 1.0 - samples[i], number: i, color: ColorType(volume: 1.0 - samples[i], level: level)))
         }
         self.waves = addWawes
         
@@ -149,6 +149,14 @@ class Sound : Identifiable, ObservableObject {
         self.timeNoSnoringPercentWhite = countNoSnoring / Double(waves.count)
         self.timeSnoringPercentYellow = countSnoringPercentYellow / Double(waves.count)
         self.timeSnoringPercentRed = countSnoringPercentRed / Double(waves.count)
+    }
+    
+    func recolor(level : Double) {
+        var newWaves : [SingleWave] = [SingleWave]()
+        for wave in waves {
+            newWaves.append(SingleWave(id: UUID(), volume: wave.volume, number: waves.firstIndex(where: {$0.id == wave.id})!, color: ColorType(volume: wave.volume, level: level)))
+        }
+        self.waves = newWaves
     }
     
     func getGraphWaves(count : Int) -> [SingleWave] {
@@ -203,6 +211,10 @@ class Sound : Identifiable, ObservableObject {
     func getTimeSnoring() -> String{
         let snoringPersent : Double = timeSnoringPercentRed + timeSnoringPercentYellow
         let snorintTime : Double = length * snoringPersent
+        
+        guard !(snorintTime.isNaN || snorintTime.isInfinite) else {
+            return "No snoring"
+        }
         let h : Int = Int(snorintTime) / 3600
         let m : Int = Int(snorintTime) / 60
         

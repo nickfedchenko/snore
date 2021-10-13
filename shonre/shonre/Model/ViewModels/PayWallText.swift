@@ -9,9 +9,10 @@ import Foundation
 
 class PayWallText: Codable {
     var lang : String
-    var text : String
+    var text : String // T
     var title : String
     var ButtonText : String
+    var price : String
     var crossView : Bool
     var purchaseId : String
     
@@ -21,29 +22,21 @@ class PayWallText: Codable {
         self.lang = try container.decode(String.self, forKey: .lang)
         self.text = try container.decode(String.self, forKey: .text)
         self.title = try container.decode(String.self, forKey: .title)
+        self.price = try container.decode(String.self, forKey: .price)
         self.ButtonText = try container.decode(String.self, forKey: .ButtonText)
         self.crossView = try container.decode(String.self, forKey: .crossView).lowercased() == "true"
         self.purchaseId = try container.decode(String.self, forKey: .purchaseId)
     }
     
     
-    
-//    init() {
-//        var lang : String
-//        var text : String
-//        var title : String
-//        var ButtonText : String
-//        var crossView : String
-//        var purchaseId : String
-//    }
-    
     enum CodingKeys: String, CodingKey {
-        case lang
-        case text
-        case title
-        case ButtonText
-        case crossView
-        case purchaseId
+        case lang = "lang"
+        case text = "tittle1"
+        case title = "subtittle1"
+        case price = "price1"
+        case ButtonText = "ButtonText"
+        case crossView = "crossView"
+        case purchaseId = "purchaseId1"
     }
     
 }

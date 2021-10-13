@@ -79,8 +79,10 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
     }
     
     func addTime(_ time : Double){
-        avPlayer!.currentTime += time
-        avPlayer!.play()
+        if avPlayer != nil {
+            avPlayer!.currentTime += time
+            avPlayer!.play()
+        }
     }
     
     func getFullTime() -> String {

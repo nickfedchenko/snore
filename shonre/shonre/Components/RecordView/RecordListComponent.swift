@@ -31,7 +31,6 @@ struct RecordListComponent: View {
         self._isLinkActive = isLinkActive
         self._toDeleteSound = toDeleteSound
         self._toDelete = toDelete
-        
     }
     
     var body: some View {
@@ -86,8 +85,6 @@ struct RecordListComponent: View {
         }.fixedSize(horizontal: false, vertical: true).gesture(DragGesture().onChanged({ val in
             let delta = val.startLocation.x - val.location.x
             
-            print("Drag")
-            print(delta)
             if delta < 0 {
                 withAnimation{
                     self.xOffset = 0

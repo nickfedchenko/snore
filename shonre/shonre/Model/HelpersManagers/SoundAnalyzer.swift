@@ -13,15 +13,24 @@ import Combine
 class SoundAnalyzer : ObservableObject {
     @Published var sounds : [Sound] = [Sound]()
     @Published var audioRecorder : AudioRecorder
+    @Published var senceLevel : Double
     var soundPlayer : WaveSoundPlayer = WaveSoundPlayer(sounds: [Sound]())
+    
+    // DELEAY LAUNCH
+    @Published var timeToDelete : Double = 0.0
+    @Published var delayType : DelayTypes?
+    var timer : Timer?
     
     var CDH : WaveSoundCDH = WaveSoundCDH()
     var cancellables = Set<AnyCancellable>()
+    
+
 
     init() {
         self.audioRecorder = AudioRecorder()
+        self.senceLevel = 0.5
         self.sounds.append(contentsOf: CDH.loadSounds())
-        self.sounds.append(contentsOf: Sound.data)
+//        self.sounds.append(contentsOf: Sound.data)
         self.sounds.sort(by: {$0.started > $1.started})
         
         for sound in sounds{
@@ -40,6 +49,19 @@ class SoundAnalyzer : ObservableObject {
         } catch let error {
             fatalError("*** Unable to set up the audio session: \(error.localizedDescription) ***")
         }
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            if let self = self{
+                if self.delayType != nil {
+                    self.timeToDelete += 1
+                    if self.timeToDelete >= self.delayType!.length && !self.audioRecorder.isRecording {
+                        self.startRecording()
+                    }
+                } else {
+                    self.timeToDelete = 0
+                }
+            }
+        }
     }
     
     func analiseSound(count: Int, fileName : URL, sound: Sound){
@@ -52,7 +74,7 @@ class SoundAnalyzer : ObservableObject {
             waveformAnalyzer!.samples(count: count) { samples in
                 
                 if samples != nil {
-                    sound.addSamples(samples: samples!)
+                    sound.addSamples(samples: samples!, level: self.senceLevel)
                 }
             }
         }
@@ -78,6 +100,17 @@ class SoundAnalyzer : ObservableObject {
         
         return count + 1
     }
+    
+    func setLevel(level : Double){
+        self.senceLevel = level
+        
+        DispatchQueue.main.async {
+            for sound in self.sounds {
+                sound.recolor(level: level)
+            }
+        }
+    }
+    
     
     func stopRecording(){
         self.audioRecorder.isRecording = false
@@ -120,6 +153,7 @@ class SoundAnalyzer : ObservableObject {
     }
     
     
+    //
     func getSleepDuration() -> [ChartColumn]{
         return CalcSoundStaticics.getSleepDuration(self.sounds)
     }
@@ -134,6 +168,16 @@ class SoundAnalyzer : ObservableObject {
     
     func getAverageSleepTime() -> String {
         return CalcSoundStaticics.getAverageSleepTime(self.sounds)
+    }
+    
+    //
+    
+    func delayLaunch(delayType : DelayTypes) {
+        if delayType.length != 0 {
+            self.delayType = delayType
+        } else {
+            self.delayType = nil
+        }
     }
 }
 

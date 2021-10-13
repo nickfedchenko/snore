@@ -71,12 +71,12 @@ struct OnboardingView: View {
             
             if selected + 1 != onboardingParts.count {
                 Text(onboardingParts[selected].tittle).font(.system(size: 30, weight: .semibold)).multilineTextAlignment(.center).foregroundColor(Color.white)
-                Text(onboardingParts[selected].text).font(.system(size: 14, weight: .medium)).foregroundColor(Color.white).padding(.horizontal, 48)
+                Text(onboardingParts[selected].text).font(.system(size: 20, weight: .medium)).multilineTextAlignment(.center).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48)
             } else {
-                Text("Continue to Pro").font(.system(size: 30, weight: .semibold)).padding(.bottom, 13).multilineTextAlignment(.center).foregroundColor(Color.white)
-                Text(pwText.text).font(.system(size: 13, weight: .medium)).foregroundColor(Color.white).padding(.horizontal, 48).multilineTextAlignment(.center).frame(width: buttonWith)
+                Text(DS.apphudHelper.Text1).font(.system(size: 30, weight: .semibold)).padding(.bottom, 13).multilineTextAlignment(.center).foregroundColor(Color.white)
+                Text(DS.apphudHelper.Tittle1).font(.system(size: 14, weight: .medium)).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48).multilineTextAlignment(.center).frame(width: buttonWith)
                 Spacer()
-                Text(pwTittle).font(.system(size: 15, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith).onAppear{
+                Text(DS.apphudHelper.Price1.replacingOccurrences(of: "%free_time%", with: DS.apphudHelper.SKtrial_time1).replacingOccurrences(of: "%price%", with: DS.apphudHelper.SKprice1).replacingOccurrences(of: "%time%", with: DS.apphudHelper.SKtime1)).font(.system(size: 15, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith).onAppear{
                     pwTittle = DS.apphudHelper.pwTitleText
                 }.onReceive(DS.apphudHelper.$pwTitleText){ val in
                     pwTittle = val
@@ -138,13 +138,13 @@ struct OnboardingView: View {
                     Button(action: {
                         webView1 = true
                     }){
-                        Text("Privacy Policy").foregroundColor(.black.opacity(0.5)).font(.system(size: 12))
+                        Text("Privacy Policy").foregroundColor(.white.opacity(0.5)).font(.system(size: 12))
                     }
                     Spacer()
                     Button(action: {
                         webView2 = true
                     }){
-                        Text("Terms of use").foregroundColor(.black.opacity(0.5)).font(.system(size: 12))
+                        Text("Terms of use").foregroundColor(.white.opacity(0.5)).font(.system(size: 12))
                     }
                     Spacer()
                 }

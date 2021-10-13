@@ -17,8 +17,8 @@ struct RecordView: View {
     @State var day : String = ""
     @State var timeText : String = ""
     @State var showSensitivity : Bool = false
+    @State var showDelayLounch : Bool = false
     
-    @State var senseLevel : Double = 0.5
     
     let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
@@ -69,7 +69,7 @@ struct RecordView: View {
                 }
                 Spacer()
                 Button(action: {
-                    
+                    showDelayLounch = true
                 }){
                     ZStack{
                         RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
@@ -104,13 +104,9 @@ struct RecordView: View {
         }).onAppear(perform: {
             setTime()
         }).sheet(isPresented: $showSensitivity, content: {
-            NavigationView{
-                SensitivyLevelView(senseLevel: $senseLevel).navigationBarTitle("Sensitivy", displayMode: .inline).toolbar(content: {
-                    Button(action: {showSensitivity = false}, label: {
-                        Text("Close")
-                    })
-                })
-            }
+            SensitivyLevelView(senseLevel: DS.soundAnalyzer.senceLevel, isPresented: $showSensitivity)
+        }).sheet(isPresented: $showDelayLounch, content: {
+            DelayedLaunchView(isPresented: $showDelayLounch)
         })
     }
     

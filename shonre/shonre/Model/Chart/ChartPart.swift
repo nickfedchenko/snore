@@ -84,6 +84,24 @@ enum ColorType : String {
         }
         self = .White
     }
+    
+    init(volume: Float, level : Double){
+        let delta : Float = 1 * Float(level - 0.5) 
+        if volume < 0.1 + delta {
+            self = .White
+            return
+        }
+        
+        if volume < 0.2 + delta {
+            self = .Yellow
+            return
+        }
+        if volume > 0.3 + delta {
+            self = .Red
+            return
+        }
+        self = .White
+    }
 }
 
 extension ChartPart {
