@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Amplitude
+import Firebase
 
 class DataStorage : ObservableObject {
     
@@ -36,6 +37,7 @@ class DataStorage : ObservableObject {
 #endif
     
     init() {
+        FirebaseApp.configure()
         self.soundAnalyzer = SoundAnalyzer()
         self.soundStack = WhiteSoundStack()
         
