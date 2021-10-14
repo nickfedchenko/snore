@@ -69,6 +69,14 @@ class DataStorage : ObservableObject {
         self.soundAnalyzer.$senceLevel.sink(receiveValue: {val in
             self.userdefault.set(val, forKey: "senceLevel")
         }).store(in: &cancellables)
+        
+        self.apphudHelper.$isPremium.sink(receiveValue: {val in
+            if val {
+                self.viewControll.showOnboarding = false
+                self.viewControll.showPayWall = false
+            }
+        }
+        ).store(in: &cancellables)
     }
     
     func parceSounds(){
