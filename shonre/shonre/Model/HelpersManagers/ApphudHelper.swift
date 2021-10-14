@@ -113,10 +113,9 @@ class ApphudHelper: ObservableObject {
         }
     }
     
-    func quickPurchase(selected : Int) {
+    func quickPurchase() {
         self.product = self.allProducts.first(where: {$0.productId == purchaseId1})
         if self.product != nil {
-            print("Quick Pay!")
             self.purchase(product: self.product!)
         }
     }
@@ -135,12 +134,17 @@ class ApphudHelper: ObservableObject {
     
     func upadtePayWall() {
         self.paywalls = Apphud.paywalls
+        print("upadtePayWall Start")
         if paywalls != nil {
+            print("upadtePayWall get paywalls")
             for wall in paywalls! {
+                print("upadtePayWall wall")
                 for prod in wall.products {
                     print(prod.productId)
+                    print(prod.skProduct)
                     if prod.skProduct != nil {
                         self.allProducts.append(prod)
+                        print("upadtePayWall Secces")
                     }
                 }
             }
@@ -180,7 +184,6 @@ class ApphudHelper: ObservableObject {
     
     
     func saveSKProduct() {
-        
         for prod in self.allProducts {
             var trial_time = ""
             var time = ""
@@ -191,7 +194,6 @@ class ApphudHelper: ObservableObject {
             if prod.skProduct!.introductoryPrice != nil{
                 trial_time = "\(prod.skProduct!.introductoryPrice!.subscriptionPeriod.numberOfUnits)"
             }
-            
             
             time = "\(prod.skProduct!.subscriptionPeriod!.numberOfUnits)"
             

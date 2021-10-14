@@ -48,7 +48,7 @@ struct RecordListComponent: View {
                         }
                     }){
                         VStack{
-                            Image(systemName: "trash")
+                            Image(systemName: "trash").renderingMode(.template).foregroundColor(.white)
                             Text("Delete").font(.system(size: 12)).foregroundColor(.white)
                         }
                     }

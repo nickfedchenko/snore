@@ -48,9 +48,9 @@ class DataStorage : ObservableObject {
             userdefault.set(true, forKey: firstLoad)
             self.userdefault.set(0.5, forKey: "senceLevel")
             parceSounds()
-            
         } else {
             self.soundStack.loadCD()
+            self.viewControll.showOnboarding = !apphudHelper.isPremium
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
         }
         

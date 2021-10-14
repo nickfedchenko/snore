@@ -31,7 +31,7 @@ struct TrendsView: View {
                     Text("Loud").foregroundColor(Color.white).font(.system(size: 14))
                     Spacer()
                 }), chartParts: ChartPart.parts12h, chartColumn: DS.soundAnalyzer.getSnoreScore(), dividersInItem: 2)
-                TrendsDotsGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(EmptyView()), chartParts: ChartPart.parts4h, chartColumn: ChartColumn.parts7, dividersInItem: 3)
+                TrendsDotsGraphComponent(tittle: "Sleep quality", subtittle:  AnyView(EmptyView()), chartParts: ChartPart.partsQuality, chartColumn: DS.soundAnalyzer.getSleepQualiti(), dividersInItem: 2)
                 
                 Spacer().frame(height: 100)
                 HStack{

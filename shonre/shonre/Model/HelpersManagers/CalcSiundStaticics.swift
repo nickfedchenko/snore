@@ -188,6 +188,34 @@ class CalcSoundStaticics {
         return out
     }
     
+    static func getSleepQualiti(_ sounds : [Sound]) -> [ChartColumn] {
+        let calendar = Calendar.current
+        let thisWeekSounds : [Sound] = getThisWeekSounds(sounds)
+        
+        var out = [ChartColumn]()
+        let maxLen : Double = 3600 * 10
+        
+        for weekDay in 1...7 {
+            let dayKey : LocalizedStringKey = getDayKey(weekDay)
+            var soundsForDay : [Sound] = thisWeekSounds.compactMap({ if calendar.component(.weekday, from: $0.started) == weekDay {return $0} else {return nil} })
+            soundsForDay.sort(by: {$0.started > $1.started})
+            
+            var dayLen : Double = 0.0
+            for sound in soundsForDay {
+                dayLen += sound.length
+            }
+            
+            var hour = !soundsForDay.isEmpty ? calendar.component(.hour, from: soundsForDay[0].started) : 0
+            let sleepTime : Int = Int(dayLen / 3600)
+            hour = hour > 19 ? hour : 19
+            
+            let percent : Double = Double((sleepTime + hour) / 24)
+            let newChar = ChartColumn(label: dayKey, percent: percent < 1 ? percent : 1.0)
+            out.append(newChar)
+        }
+        
+        return out
+    }
     
     static func getDayKey(_ day : Int) -> LocalizedStringKey {
         switch day {

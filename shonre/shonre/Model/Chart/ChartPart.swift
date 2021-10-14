@@ -109,6 +109,8 @@ extension ChartPart {
     
     static var parts4h : [ChartPart] = [ChartPart(label: "4h"), ChartPart(label: "3h"), ChartPart(label: "2h"), ChartPart(label: "1h"), ChartPart(label: "0h")]
     
+    static var partsQuality : [ChartPart] = [ChartPart(label: "10"), ChartPart(label: "8"), ChartPart(label: "6"), ChartPart(label: "4"), ChartPart(label: "2"), ChartPart(label: "0")]
+    
     static var parts19to1h : [ChartPart] = [ChartPart(label: "19h"), ChartPart(label: "20h"), ChartPart(label: "21h"), ChartPart(label: "22h"), ChartPart(label: "23h"), ChartPart(label: "24h"), ChartPart(label: "1h")]
 }
 

@@ -170,6 +170,10 @@ class SoundAnalyzer : ObservableObject {
         return CalcSoundStaticics.getAverageSleepTime(self.sounds)
     }
     
+    func getSleepQualiti() -> [ChartColumn] {
+        return CalcSoundStaticics.getSleepQualiti(self.sounds)
+    }
+    
     //
     
     func delayLaunch(delayType : DelayTypes) {

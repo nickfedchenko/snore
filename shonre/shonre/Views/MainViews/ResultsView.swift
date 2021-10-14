@@ -33,7 +33,9 @@ struct ResultsView: View {
                     HStack{
                         Spacer()
                     }
-                }.navigationBarTitle(isLinkActive ? "Results" : "", displayMode: .automatic).navigationBarHidden(true).background(Color("Back").ignoresSafeArea())
+                }.navigationBarTitle(isLinkActive ? "Results" : "", displayMode: .automatic).navigationBarHidden(true).background(Color("Back").ignoresSafeArea()).background(NavigationConfigurator { nc in
+                    nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+                })
                 
                 if toDelete {
                     ZStack(alignment: .center){
@@ -62,9 +64,7 @@ struct ResultsView: View {
                                     }
                                 }){
                                     Text("Cancel").foregroundColor(Color("TextGray"))
-                                    
                                 }
-                                
                             }
                         }
                     }
@@ -86,4 +86,19 @@ struct ResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ResultsView()
     }
+}
+
+
+struct NavigationConfigurator: UIViewControllerRepresentable {
+    var configure: (UINavigationController) -> Void = { _ in }
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<NavigationConfigurator>) -> UIViewController {
+        UIViewController()
+    }
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<NavigationConfigurator>) {
+        if let nc = uiViewController.navigationController {
+            self.configure(nc)
+        }
+    }
+
 }

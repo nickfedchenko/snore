@@ -103,10 +103,7 @@ struct OnboardingView: View {
                             buttonLock = false
                         }
                     } else {
-                        if DS.apphudHelper.product != nil {
-                            DS.apphudHelper.purchase(product: DS.apphudHelper.product!)
-//                            DS.onboardingWasShown()
-                        }
+                        DS.apphudHelper.quickPurchase()
                     }
                     
                     // Уведомления
@@ -161,7 +158,7 @@ struct OnboardingView: View {
                         Image(systemName: "xmark").resizable().foregroundColor(Color.black).frame(width: 16, height: 16)
                     })
                 }.padding().background(Color("AccentColor").ignoresSafeArea())
-                WebView(type: .public, url: "https://docs.google.com/document/d/1DI1PYSlAYSLpm1A0ZpUbUJJd8JJ6BXUTzA7IGzzRazc/edit?usp=sharing").navigationBarItems(trailing: Button("Close"){
+                WebView(type: .public, url: "https://docs.google.com/document/d/1qprQFEVC0N4lmjQbG6dulR46dlLvubipgPFN3DVeUZU/edit?usp=sharing").navigationBarItems(trailing: Button("Close"){
                     webView1 = false
                 })
             }
@@ -175,7 +172,7 @@ struct OnboardingView: View {
                         Image(systemName: "xmark").resizable().foregroundColor(Color.black).frame(width: 16, height: 16)
                     })
                 }.padding().background(Color("AccentColor").ignoresSafeArea())
-                WebView(type: .public, url: "https://docs.google.com/document/d/1JplDU3jZA-tpxDEW9gSlNsQGfQ3Mwg6c-eUJ9-P9gMg/edit?usp=sharing").navigationBarItems(trailing: Button("Close"){
+                WebView(type: .public, url: "https://docs.google.com/document/d/1XrVvc_vh2NGm_nHv2kYCRh5vaEFiPJFiZJGh-lP_ceg/edit?usp=sharing").navigationBarItems(trailing: Button("Close"){
                     webView2 = false
                 })
             }
