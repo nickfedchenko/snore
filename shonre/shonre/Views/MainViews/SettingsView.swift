@@ -18,7 +18,7 @@ struct SettingsView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Sounds").font(.system(size: 30)).foregroundColor(Color.white)
+                Text("Settings").font(.system(size: 30)).foregroundColor(Color.white)
                 Spacer()
             }.padding(.horizontal, 15).padding(.top, 30).padding(.bottom, 27)
             

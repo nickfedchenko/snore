@@ -10,7 +10,6 @@ import SwiftUI
 struct SensitivyLevelView: View {
     @EnvironmentObject var DS : DataStorage
     
-    var player : SingleWaveSoundPlayer = SingleWaveSoundPlayer.data[0]
     
     @State var senseLevel : Double
     @Binding var isPresented : Bool

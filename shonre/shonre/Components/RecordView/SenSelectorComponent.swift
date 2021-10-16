@@ -27,8 +27,6 @@ struct SenSelectorComponent: View {
                         if self.proggres >= 1 {
                             self.proggres = 1
                         }
-                        print("proggres")
-                        print(proggres)
                     }).onEnded({ val in
                         let x = val.location.x
                         self.proggres = Double(x / proxy.size.width)

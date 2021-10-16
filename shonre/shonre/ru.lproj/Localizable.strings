@@ -1,0 +1,88 @@
+/*
+  Localizable.strings
+  shonre
+
+  Created by Александр Шендрик on 15.10.2021.
+  
+*/
+
+// BottomBar
+"Record" = "Запись";
+"Results" = "Результаты";
+"Trends" = "Аналитика";
+"Sounds" = "Звуки";
+"Settings" = "Настройки";
+
+// Record View
+"Sleep Control" = "Контроль сна";
+"Sensitivity\nlevel" = "Уровень\n чувствительности";
+"Delay\nactivation" = "Задержка\n активации";
+
+
+// Results View
+"Are you sure you want to delete the entry?" = "Вы уверены, что хотите удалить запись?";
+"Cancel" = "Отменить";
+
+// Trends Vuew
+"Sleep duration" = "Длительность сна";
+"Sleep time" = "Время сна";
+"Sleep duration" = "Продолжительность";
+"Low" = "Тихо";
+"Hight" = "Громко";
+"Loud" = "Очень громко";
+"Sleep quality" = "Качество сна";
+
+// Settings View
+"Settings" = "Настройки";
+"App functions" = "Функции приложения";
+"Restore purchase" = "Восстановить покупку";
+"Сontact the developer" = "Связаться с разработчиком";
+
+// Sensitivy Level View
+"Sensitivy" = "Чуствительность";
+"Done" = "Выполнено";
+
+// Single Sound View
+"Recording @%" = "Запись @%";
+"Started/Stoped" = "Старт/Стоп";
+"Time in Bed" = "Время сна";
+"Time snoring" = "Длительность храпа";
+
+// Delayed Launch View
+"off" = "off";
+"5 minutes" = "5 минут";
+"10 minutes" = "10 минут";
+"15 minutes" = "15 минут";
+"20 minutes" = "20 минут";
+"30 minutes" = "30 минут";
+"45 minutes" = "45 минут";
+"1 hour" = "1 час";
+"2 hour" = "2 часа";
+"3 hour" = "3 часа";
+
+// Mixer View
+"Turn off" = "Выключить";
+"Turn on" = "Включить";
+"No sounds" = "Нет звуков";
+"@% Sounds" = "@% Звук";
+"Save" = "Сохранить";
+"Sounds" = "Звуки";
+
+
+// Onboarding View
+"Animated enabled" = "Анимация включена ";
+"Privacy Policy" = "Privacy Policy";
+"Terms of use" = "Terms of use";
+
+
+// Delayed Launch Component
+"Delayed Launch" = "Отложный запуск";
+"Playback will start at" = "Воспроизведение начнется через";
+
+// Choose Stop Time Component
+"How long do you want the sound to play?" = "Как долго воспроизводить аудио";
+"Ready" = "Готово";
+
+// Record List Component
+"Delete" = "Удалить";
+"Record @%" = "Запись @%";
