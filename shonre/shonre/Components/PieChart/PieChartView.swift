@@ -77,7 +77,7 @@ struct PieSliceView: View {
                     .position(
                         x: geometry.size.width * 0.5 * CGFloat(1.0 + 0.58 * cos(self.midRadians)),
                         y: geometry.size.height * 0.5 * CGFloat(1.0 - 0.58 * sin(self.midRadians))
-                    ).foregroundColor(pieSliceData.colorText).font(.system(size: 18, weight: .medium))
+                    ).foregroundColor(pieSliceData.colorText).font(.system(size: UIScreen.main.bounds.width > 320 ? 18 : 14, weight: .medium))
             }
         }
         .aspectRatio(1, contentMode: .fit)

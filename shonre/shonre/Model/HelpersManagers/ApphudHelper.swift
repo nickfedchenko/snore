@@ -56,6 +56,7 @@ class ApphudHelper: ObservableObject {
         }
         
         self.isPremium = Apphud.hasActiveSubscription()
+//        self.isPremium = true
         
         getPayWalls()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

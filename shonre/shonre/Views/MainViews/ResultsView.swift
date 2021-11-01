@@ -16,6 +16,7 @@ struct ResultsView: View {
     
     @State var toDeleteSound : Sound?
     @State var toDelete : Bool = false
+    @State var openSound : Bool = false
     
     var body: some View {
         NavigationView{
@@ -25,7 +26,7 @@ struct ResultsView: View {
                             RecordListComponent(player: DS.soundAnalyzer.soundPlayer.getPlayer(for: sound), activeSound : $activeSound, isLinkActive : $isLinkActive, toDeleteSound : $toDeleteSound, toDelete: $toDelete)
                         }
                     if activeSound != nil {
-                        NavigationLink(destination: SingleSoundView(player: activeSound!), isActive: $isLinkActive){
+                        NavigationLink(destination: SingleSoundView(player: activeSound!, isPresented: $isLinkActive), isActive: $isLinkActive){
                             EmptyView()
                         }
                     }

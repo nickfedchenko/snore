@@ -25,12 +25,14 @@ struct RecordView: View {
     var body: some View {
         VStack{
             Spacer()
-            Text("Sleep Control").font(.system(size: 30, weight: .medium)).foregroundColor(.white).padding(.vertical)
+            if UIScreen.main.bounds.width > 320 {
+                Text("Sleep Control").font(.system(size: 30, weight: .medium)).foregroundColor(.white).padding(.vertical)
+            }
             
             ZStack{
                 Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
                 VStack{
-                    Text(timeText).font(.system(size: 36, weight: .medium)).foregroundColor(.white)
+                    Text(timeText.uppercased()).font(.system(size: UIScreen.main.bounds.width > 320 ? 36 : 24, weight: .medium)).foregroundColor(.white)
                     Text(day).font(.system(size: 19, weight: .medium)).foregroundColor(.white)
                     
                     Button(action: {
@@ -51,7 +53,6 @@ struct RecordView: View {
                     }.onReceive(DS.soundAnalyzer.audioRecorder.$isRecording, perform: {val in
                         self.isRecording = DS.soundAnalyzer.audioRecorder.isRecording
                     })
-                    Spacer()
                 }
             }.fixedSize()
             
@@ -79,7 +80,7 @@ struct RecordView: View {
                         }
                     }
                 }
-            }.frame(width: 283)
+            }.frame(width: 310)
             
 //            Button(action: {
 //                
@@ -94,9 +95,6 @@ struct RecordView: View {
 //            }
             
             Spacer()
-            HStack{
-                Spacer()
-            }
         }.background(Color("Back").ignoresSafeArea()).onReceive(timer, perform: {_ in
             sec += 0.05
             setTime()

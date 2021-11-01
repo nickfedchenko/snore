@@ -36,7 +36,13 @@ struct OnboardingView: View {
                             HStack{
                                 ForEach(0..<onboardingParts.count){ i in
                                     Spacer().id(i)
-                                    Image(onboardingParts[i].img).resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
+                                    if UIScreen.main.bounds.width > 375 {
+                                            Image(onboardingParts[i].img).resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
+                                    } else {
+                                        VStack{
+                                            Image(onboardingParts[i].img).resizable().aspectRatio(contentMode: .fit)
+                                        }.frame(width: UIScreen.main.bounds.width)
+                                    }
                                 }
                             }
                         }.onChange(of: selected, perform: { value in
@@ -47,7 +53,7 @@ struct OnboardingView: View {
                             proxy.scrollTo(selected)
                         })
                     }
-                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.height / 1.6).disabled(true)
+                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.6 : UIScreen.main.bounds.height / 2.0).disabled(true)
                 
                 if showCross {
                     VStack{
@@ -61,29 +67,34 @@ struct OnboardingView: View {
                                     Image("cross").renderingMode(.template).resizable().aspectRatio(contentMode: .fit).foregroundColor(.black).frame(width: 18, height: 18)
                                 }
                             })
-                        }.padding(.top,60).padding(.horizontal)
+                        }.padding(.top, UIScreen.main.bounds.width > 375 ? 60 : 100).padding(.horizontal)
                         Spacer()
                     }
                 }
             }
                 
-            Spacer()
+            if UIScreen.main.bounds.width > 375 {
+                Spacer()
+            }
             
             if selected + 1 != onboardingParts.count {
                 Text(onboardingParts[selected].tittle).font(.system(size: 30, weight: .semibold)).multilineTextAlignment(.center).foregroundColor(Color.white)
                 Text(onboardingParts[selected].text).font(.system(size: 20, weight: .medium)).multilineTextAlignment(.center).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48)
             } else {
-                Text(DS.apphudHelper.Text1).font(.system(size: 30, weight: .semibold)).padding(.bottom, 13).multilineTextAlignment(.center).foregroundColor(Color.white)
-                Text(DS.apphudHelper.Tittle1).font(.system(size: 14, weight: .medium)).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48).multilineTextAlignment(.center).frame(width: buttonWith)
+                Text(DS.apphudHelper.Text1).font(.system(size: UIScreen.main.bounds.width > 375 ? 30 : 20, weight: .semibold)).padding(.bottom, 13).multilineTextAlignment(.center).foregroundColor(Color.white)
+                Text(DS.apphudHelper.Tittle1).font(.system(size: UIScreen.main.bounds.width > 375 ? 14 : 12, weight: .medium)).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48).multilineTextAlignment(.center).frame(width: buttonWith)
                 Spacer()
-                Text(DS.apphudHelper.Price1.replacingOccurrences(of: "%free_time%", with: DS.apphudHelper.SKtrial_time1).replacingOccurrences(of: "%price%", with: DS.apphudHelper.SKprice1).replacingOccurrences(of: "%time%", with: DS.apphudHelper.SKtime1)).font(.system(size: 15, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith).onAppear{
+                Text(DS.apphudHelper.Price1.replacingOccurrences(of: "%free_time%", with: DS.apphudHelper.SKtrial_time1).replacingOccurrences(of: "%price%", with: DS.apphudHelper.SKprice1).replacingOccurrences(of: "%time%", with: DS.apphudHelper.SKtime1)).font(.system(size: UIScreen.main.bounds.width > 375 ? 15 : 12, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith).onAppear{
                     pwTittle = DS.apphudHelper.pwTitleText
                 }.onReceive(DS.apphudHelper.$pwTitleText){ val in
                     pwTittle = val
                 }
             }
             
+            
             Spacer()
+            
+            
             ZStack{
                 RoundedRectangle(cornerRadius: 10).stroke(Color("ButtonRed"), lineWidth: 0.5).frame(width: buttonWith, height: 41)
                 HStack{
@@ -135,13 +146,13 @@ struct OnboardingView: View {
                     Button(action: {
                         webView1 = true
                     }){
-                        Text("Privacy Policy").foregroundColor(.white.opacity(0.5)).font(.system(size: 12))
+                        Text("Privacy Policy").foregroundColor(.white.opacity(0.5)).font(.system(size: 14))
                     }
                     Spacer()
                     Button(action: {
                         webView2 = true
                     }){
-                        Text("Terms of use").foregroundColor(.white.opacity(0.5)).font(.system(size: 12))
+                        Text("Terms of use").foregroundColor(.white.opacity(0.5)).font(.system(size: 14))
                     }
                     Spacer()
                 }

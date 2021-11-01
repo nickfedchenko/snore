@@ -45,7 +45,7 @@ struct MainView: View {
                     BottomBarItem(tittle: "Settings", imgName: "SettingsBar", num: 5, selected: $selectedTab)
                 }.padding(.top, 18)
                 Spacer()
-            }.padding(.horizontal, 29).frame(height: 105).background(Color("Back")).shadow(color: .black.opacity(0.07), radius:37, x: 0, y: -7)
+            }.padding(.horizontal, 29).frame(height: UIScreen.main.bounds.width > 375 ? 105 : 80).background(Color("Back")).shadow(color: .black.opacity(0.07), radius:37, x: 0, y: -7)
             
             SlideOverCard(possitionController: $viewControll.possitionController){
                 MixerView(possitionController: $viewControll.possitionController)

@@ -54,7 +54,9 @@ class DataStorage : ObservableObject {
             self.soundStack.loadCD()
             self.viewControll.showOnboarding = !apphudHelper.isPremium
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
+            
         }
+        
         
         getProducts()
         
