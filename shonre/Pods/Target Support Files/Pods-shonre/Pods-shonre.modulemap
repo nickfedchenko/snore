@@ -1,0 +1,6 @@
+framework module Pods_shonre {
+  umbrella header "Pods-shonre-umbrella.h"
+
+  export *
+  module * { export * }
+}

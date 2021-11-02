@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19206" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LikedMixeCore" representedClassName="LikedMixeCore" syncable="YES">
+        <attribute name="mixeId" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="MixeCore" representedClassName="MixeCore" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageFileName" optional="YES" attributeType="String"/>
+        <attribute name="imageLink" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="MixSoundCore" representedClassName="MixSoundCore" syncable="YES">
+        <attribute name="possition" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="soundID" optional="YES" attributeType="String"/>
+        <attribute name="volume" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="mixeCore" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MixeCore"/>
+    </entity>
+    <entity name="WhiteSoundCore" representedClassName="WhiteSoundCore" syncable="YES">
+        <attribute name="fbid" optional="YES" attributeType="String"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="imageLink" optional="YES" attributeType="String"/>
+        <attribute name="imgFileName" optional="YES" attributeType="String"/>
+        <attribute name="imgName" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="LikedMixeCore" positionX="-63" positionY="54" width="128" height="44"/>
+        <element name="MixeCore" positionX="-63" positionY="45" width="128" height="104"/>
+        <element name="MixSoundCore" positionX="-54" positionY="54" width="128" height="89"/>
+        <element name="WhiteSoundCore" positionX="-63" positionY="-18" width="128" height="149"/>
+    </elements>
+</model>

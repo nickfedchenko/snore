@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DSWaveformImage",
+        "repositoryURL": "https://github.com/dmrschmidt/DSWaveformImage",
+        "state": {
+          "branch": null,
+          "revision": "0ad978ac30ce7b5839afe3aad35afc5fc97f0abc",
+          "version": "9.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

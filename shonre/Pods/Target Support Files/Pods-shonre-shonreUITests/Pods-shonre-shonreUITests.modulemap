@@ -1,0 +1,6 @@
+framework module Pods_shonre_shonreUITests {
+  umbrella header "Pods-shonre-shonreUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

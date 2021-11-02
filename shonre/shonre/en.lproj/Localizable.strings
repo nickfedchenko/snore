@@ -1,0 +1,88 @@
+/*
+  Localizable.strings
+  shonre
+
+  Created by Александр Шендрик on 15.10.2021.
+  
+*/
+
+// BottomBar
+"Record" = "Record";
+"Results" = "Results";
+"Trends" = "Analytics";
+"Sounds" = "Sounds";
+"Settings" = "Settings";
+
+// Record View
+"Sleep Control" = "Sleep Control";
+"Sensitivity\nlevel" = "Sensitivity\nlevel";
+"Delay\nactivation" = "Delay\nactivation";
+
+
+// Results View
+"Are you sure you want to delete the entry?" = "Are you sure you want to delete the entry?";
+"Cancel" = "Cancel";
+
+// Trends Vuew
+"Sleep duration" = "Sleep duration";
+"Sleep time" = "Sleep time";
+"Sleep duration" = "Sleep duration";
+"Low" = "Low";
+"Hight" = "Hight";
+"Loud" = "Loud";
+"Sleep quality" = "Sleep quality";
+
+// Settings View
+"Settings" = "Settings";
+"App functions" = "App functions";
+"Restore purchase" = "Restore purchase";
+"Сontact the developer" = "Сontact the developer";
+
+// Sensitivy Level View
+"Sensitivy" = "Sensitivy";
+"Done" = "Done";
+
+// Single Sound View
+"Recording @%" = "Recording @%";
+"Started/Stoped" = "Started/Stoped";
+"Time in Bed" = "Time in Bed";
+"Time snoring" = "Time snoring";
+
+// Delayed Launch View
+"off" = "off";
+"5 minutes" = "5 minutes";
+"10 minutes" = "10 minutes";
+"15 minutes" = "15 minutes";
+"20 minutes" = "20 minutes";
+"30 minutes" = "30 minutes";
+"45 minutes" = "45 minutes";
+"1 hour" = "1 hour";
+"2 hour" = "2 hour";
+"3 hour" = "3 hour";
+
+// Mixer View
+"Turn off" = "Turn off";
+"Turn on" = "Turn on";
+"No sounds" = "No sounds";
+"@% Sounds" = "@% Sounds";
+"Save" = "Save";
+"Sounds" = "Sounds";
+
+
+// Onboarding View
+"Animated enabled" = "Animated enabled";
+"Privacy Policy" = "Privacy Policy";
+"Terms of use" = "Terms of use";
+
+
+// Delayed Launch Component
+"Delayed Launch" = "Delayed Launch";
+"Playback will start at" = "Playback will start at";
+
+// Choose Stop Time Component
+"How long do you want the sound to play?" = "How long do you want the sound to play?";
+"Ready" = "Ready";
+
+// Record List Component
+"Delete" = "Delete";
+"Record @%" = "Record @%";
