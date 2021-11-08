@@ -41,10 +41,10 @@ struct ChartComponent: View {
                                 for i in 0..<linesCount {
                                     path.move(to: CGPoint(x: 20, y: CGFloat(i * bpadding)))
                                     path.addLine(to: CGPoint(x: proxy.size.width, y: CGFloat(i * bpadding)))
-                                    path.addLine(to: CGPoint(x: proxy.size.width, y: CGFloat(i * bpadding + 2)))
-                                    path.addLine(to: CGPoint(x: 20, y: CGFloat(i * bpadding + 2)))
+                                    path.addLine(to: CGPoint(x: proxy.size.width, y: CGFloat(i * bpadding + 1)))
+                                    path.addLine(to: CGPoint(x: 20, y: CGFloat(i * bpadding + 1)))
                                 }
-                            }.fill(Color("ChartLegend")).frame(height: maxCharHeight)
+                            }.fill(Color("ChartLegend").opacity(0.13)).frame(height: maxCharHeight)
                         }
                         Spacer()
                     }.frame(height: maxCharHeight + CGFloat(bpadding))

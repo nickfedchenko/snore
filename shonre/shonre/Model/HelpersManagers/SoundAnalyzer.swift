@@ -42,13 +42,13 @@ class SoundAnalyzer : ObservableObject {
         }
         
         self.soundPlayer = WaveSoundPlayer(sounds: self.sounds)
-        let session = AVAudioSession.sharedInstance()
-        
-        do {
-            try session.setCategory(AVAudioSession.Category.playback, mode: .default, policy: AVAudioSession.RouteSharingPolicy.longFormAudio, options: [])
-        } catch let error {
-            fatalError("*** Unable to set up the audio session: \(error.localizedDescription) ***")
-        }
+//        let session = AVAudioSession.sharedInstance()
+//        
+//        do {
+//            try session.setCategory(AVAudioSession.Category.playback, mode: .default, policy: AVAudioSession.RouteSharingPolicy.longFormAudio, options: [])
+//        } catch let error {
+//            fatalError("*** Unable to set up the audio session: \(error.localizedDescription) ***")
+//        }
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             if let self = self{
@@ -153,28 +153,32 @@ class SoundAnalyzer : ObservableObject {
     }
     
     
-    //
-    func getSleepDuration() -> [ChartColumn]{
+    // Данные графиков
+    func getSleepDuration() -> [ChartColumn]{ // 1 /3
         return CalcSoundStaticics.getSleepDuration(self.sounds)
     }
     
-    func getSleepTime() -> [ChartColumn]{
+    func getGoToBedTime() -> [ChartColumn]{ // 2
         return CalcSoundStaticics.getSleepTime(self.sounds)
     }
     
-    func getSnoreScore() -> [ChartColorColumn]{
+    func getSnoreScore() -> [ChartColorColumn]{ // 4
         return CalcSoundStaticics.getSnoreScore(self.sounds)
     }
     
-    func getAverageSleepTime() -> String {
-        return CalcSoundStaticics.getAverageSleepTime(self.sounds)
-    }
-    
-    func getSleepQualiti() -> [ChartColumn] {
+    func getSleepQualiti() -> [ChartColumn] { 
         return CalcSoundStaticics.getSleepQualiti(self.sounds)
     }
     
-    //
+    func getSnoringDuration() -> [ChartColumn] {
+        return CalcSoundStaticics.getSnoringDuration(self.sounds)
+    }
+    
+    // Строки
+    func getAverageSleepTime() -> String { // 1
+        return CalcSoundStaticics.getAverageSleepTime(self.sounds)
+    }
+    
     
     func delayLaunch(delayType : DelayTypes) {
         if delayType.length != 0 {

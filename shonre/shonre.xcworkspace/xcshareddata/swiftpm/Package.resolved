@@ -5,9 +5,9 @@
         "package": "DSWaveformImage",
         "repositoryURL": "https://github.com/dmrschmidt/DSWaveformImage",
         "state": {
-          "branch": null,
-          "revision": "0ad978ac30ce7b5839afe3aad35afc5fc97f0abc",
-          "version": "9.0.2"
+          "branch": "main",
+          "revision": "e0f4caa6a8c1bb168df8d4194b46d6bd12d5878e",
+          "version": null
         }
       }
     ]

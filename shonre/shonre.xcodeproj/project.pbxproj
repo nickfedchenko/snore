@@ -40,7 +40,8 @@
 		8BABCEDE270786AA00BBAE54 /* TrendsColorGraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABCEDD270786A900BBAE54 /* TrendsColorGraphComponent.swift */; };
 		8BABCEE02707882F00BBAE54 /* ChartColorColumnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABCEDF2707882F00BBAE54 /* ChartColorColumnComponent.swift */; };
 		8BC56F222718251F001A20AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC56F212718251F001A20AD /* GoogleService-Info.plist */; };
-		8BD5471E2714493000AAD506 /* CalcSiundStaticics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD5471D2714493000AAD506 /* CalcSiundStaticics.swift */; };
+		8BD0671027336C7300FF5689 /* DSWaveformImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD0670F27336C7300FF5689 /* DSWaveformImage */; };
+		8BD5471E2714493000AAD506 /* CalcSoundStaticics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */; };
 		8BD5472C2715621800AAD506 /* WhiteSoundCDH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD547202715621700AAD506 /* WhiteSoundCDH.swift */; };
 		8BD5472D2715621800AAD506 /* SingleSoundPlayerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD547222715621700AAD506 /* SingleSoundPlayerVM.swift */; };
 		8BD5472E2715621800AAD506 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD547232715621700AAD506 /* SoundPlayer.swift */; };
@@ -93,7 +94,6 @@
 		8BD5478D2715B58500AAD506 /* PayWallText.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BD5478C2715B58500AAD506 /* PayWallText.json */; };
 		8BD5478F2715C2DC00AAD506 /* SensitivyLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD5478E2715C2DC00AAD506 /* SensitivyLevelView.swift */; };
 		8BF48365270C2DE7002D0A4D /* TrendsDotsGraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF48364270C2DE7002D0A4D /* TrendsDotsGraphComponent.swift */; };
-		8BF4836A270C6BF0002D0A4D /* DSWaveformImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF48369270C6BF0002D0A4D /* DSWaveformImage */; };
 		8BF4836C270C6C9A002D0A4D /* SoundAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF4836B270C6C9A002D0A4D /* SoundAnalyzer.swift */; };
 		8BF4836F270C6E79002D0A4D /* example_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8BF4836E270C6E79002D0A4D /* example_sound.mp3 */; };
 		8BF48372270C6F76002D0A4D /* SingleWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF48371270C6F76002D0A4D /* SingleWave.swift */; };
@@ -168,8 +168,9 @@
 		8BABCEDA2707251C00BBAE54 /* ChartPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPart.swift; sourceTree = "<group>"; };
 		8BABCEDD270786A900BBAE54 /* TrendsColorGraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsColorGraphComponent.swift; sourceTree = "<group>"; };
 		8BABCEDF2707882F00BBAE54 /* ChartColorColumnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorColumnComponent.swift; sourceTree = "<group>"; };
+		8BB37394273947B0002C031E /* shonre.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = shonre.entitlements; sourceTree = "<group>"; };
 		8BC56F212718251F001A20AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8BD5471D2714493000AAD506 /* CalcSiundStaticics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcSiundStaticics.swift; sourceTree = "<group>"; };
+		8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcSoundStaticics.swift; sourceTree = "<group>"; };
 		8BD547202715621700AAD506 /* WhiteSoundCDH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteSoundCDH.swift; sourceTree = "<group>"; };
 		8BD547222715621700AAD506 /* SingleSoundPlayerVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSoundPlayerVM.swift; sourceTree = "<group>"; };
 		8BD547232715621700AAD506 /* SoundPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
@@ -250,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BA6614B27175CA200C9E5BD /* StoreKit.framework in Frameworks */,
-				8BF4836A270C6BF0002D0A4D /* DSWaveformImage in Frameworks */,
+				8BD0671027336C7300FF5689 /* DSWaveformImage in Frameworks */,
 				08D66D25C63FBC030ABD7B1F /* Pods_shonre.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +319,7 @@
 		8B81CAF72705B05500E92CC4 /* shonre */ = {
 			isa = PBXGroup;
 			children = (
+				8BB37394273947B0002C031E /* shonre.entitlements */,
 				8BC56F212718251F001A20AD /* GoogleService-Info.plist */,
 				8BF4836D270C6D23002D0A4D /* TestSounds */,
 				8BABCEB92706E0C800BBAE54 /* JSON */,
@@ -421,7 +423,7 @@
 			children = (
 				8BABCEBE2706E13600BBAE54 /* DataStorage.swift */,
 				8BF4836B270C6C9A002D0A4D /* SoundAnalyzer.swift */,
-				8BD5471D2714493000AAD506 /* CalcSiundStaticics.swift */,
+				8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */,
 				8BD5474B2715632000AAD506 /* ViewControll.swift */,
 				8BD5477D27157AE300AAD506 /* ApphudHelper.swift */,
 				8BD5478A2715B4D700AAD506 /* Bundle-Decodable.swift */,
@@ -683,7 +685,7 @@
 			);
 			name = shonre;
 			packageProductDependencies = (
-				8BF48369270C6BF0002D0A4D /* DSWaveformImage */,
+				8BD0670F27336C7300FF5689 /* DSWaveformImage */,
 			);
 			productName = shonre;
 			productReference = 8B81CAF52705B05500E92CC4 /* shonre.app */;
@@ -762,7 +764,7 @@
 			);
 			mainGroup = 8B81CAEC2705B05400E92CC4;
 			packageReferences = (
-				8BF48368270C6BF0002D0A4D /* XCRemoteSwiftPackageReference "DSWaveformImage" */,
+				8BD0670E27336C7300FF5689 /* XCRemoteSwiftPackageReference "DSWaveformImage" */,
 			);
 			productRefGroup = 8B81CAF62705B05500E92CC4 /* Products */;
 			projectDirPath = "";
@@ -1006,7 +1008,7 @@
 				8BF48365270C2DE7002D0A4D /* TrendsDotsGraphComponent.swift in Sources */,
 				8BF48374270C725B002D0A4D /* Sound.swift in Sources */,
 				8BD5477A27157A8B00AAD506 /* SoundAttenuationComponent.swift in Sources */,
-				8BD5471E2714493000AAD506 /* CalcSiundStaticics.swift in Sources */,
+				8BD5471E2714493000AAD506 /* CalcSoundStaticics.swift in Sources */,
 				8BD5477E27157AE300AAD506 /* ApphudHelper.swift in Sources */,
 				8BD547872715B33C00AAD506 /* OnboardingPart.swift in Sources */,
 				8BF72924270DAE93000CBDA4 /* WaveSoundCDH.swift in Sources */,
@@ -1191,8 +1193,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = shonre/shonre.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"shonre/Preview Content\"";
 				DEVELOPMENT_TEAM = AQW67FQ9GZ;
 				ENABLE_PREVIEWS = YES;
@@ -1214,6 +1218,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1226,8 +1231,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = shonre/shonre.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"shonre/Preview Content\"";
 				DEVELOPMENT_TEAM = AQW67FQ9GZ;
 				ENABLE_PREVIEWS = YES;
@@ -1249,6 +1256,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1397,20 +1405,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8BF48368270C6BF0002D0A4D /* XCRemoteSwiftPackageReference "DSWaveformImage" */ = {
+		8BD0670E27336C7300FF5689 /* XCRemoteSwiftPackageReference "DSWaveformImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmrschmidt/DSWaveformImage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8BF48369270C6BF0002D0A4D /* DSWaveformImage */ = {
+		8BD0670F27336C7300FF5689 /* DSWaveformImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8BF48368270C6BF0002D0A4D /* XCRemoteSwiftPackageReference "DSWaveformImage" */;
+			package = 8BD0670E27336C7300FF5689 /* XCRemoteSwiftPackageReference "DSWaveformImage" */;
 			productName = DSWaveformImage;
 		};
 /* End XCSwiftPackageProductDependency section */

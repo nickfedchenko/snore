@@ -18,11 +18,11 @@ struct TrendsView: View {
                 VStack{
                     ScrollView{
                         TrendsGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(HStack{
-                            Text(DS.soundAnalyzer.getAverageSleepTime()).foregroundColor(.white); Spacer()
+                            Text(DS.soundAnalyzer.getAverageSleepTime()).font(.system(size: 16, weight: .thin)).foregroundColor(.white); Spacer()
                         }), chartParts: ChartPart.parts12h, chartColumn: DS.soundAnalyzer.getSleepDuration(), dividersInItem: 2)
                         TrendsGraphComponent(tittle: "Sleep time", subtittle:  AnyView(HStack{
                             Text("Go to bed").foregroundColor(.white); Spacer()
-                        }), chartParts: ChartPart.parts19to1h, chartColumn: DS.soundAnalyzer.getSleepTime(), dividersInItem: 1)
+                        }), chartParts: ChartPart.parts19to1h, chartColumn: DS.soundAnalyzer.getGoToBedTime(), dividersInItem: 1)
                         TrendsColorGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(HStack{
                             Circle().frame(width: 8, height: 8).foregroundColor(ColorType.White.getColor())
                             Text("Low").foregroundColor(Color.white).font(.system(size: 14))
@@ -46,11 +46,16 @@ struct TrendsView: View {
                 VStack{
                     ScrollView{
                         TrendsGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(HStack{
-                            Text(DS.soundAnalyzer.getAverageSleepTime()).foregroundColor(.white); Spacer()
+                            Text(DS.soundAnalyzer.getAverageSleepTime()).font(.system(size: 16, weight: .thin)).foregroundColor(.white); Spacer()
                         }), chartParts: ChartPart.parts12h, chartColumn: DS.soundAnalyzer.getSleepDuration(), dividersInItem: 2)
                         TrendsGraphComponent(tittle: "Sleep time", subtittle:  AnyView(HStack{
                             Text("Go to bed").foregroundColor(.white); Spacer()
-                        }), chartParts: ChartPart.parts19to1h, chartColumn: DS.soundAnalyzer.getSleepTime(), dividersInItem: 1)
+                        }), chartParts: ChartPart.parts19to1h, chartColumn: DS.soundAnalyzer.getGoToBedTime(), dividersInItem: 1)
+                        
+                        TrendsGraphComponent(tittle: "Duration of snoring", subtittle:  AnyView(HStack{
+                            Text(DS.soundAnalyzer.getAverageSleepTime()).font(.system(size: 16, weight: .thin)).foregroundColor(.white); Spacer()
+                        }), chartParts: ChartPart.parts4h, chartColumn: DS.soundAnalyzer.getSnoringDuration(), dividersInItem: 2)
+                        
                         TrendsColorGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(HStack{
                             Circle().frame(width: 8, height: 8).foregroundColor(ColorType.White.getColor())
                             Text("Low").foregroundColor(Color.white).font(.system(size: 14))

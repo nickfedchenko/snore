@@ -53,7 +53,7 @@ struct OnboardingView: View {
                             proxy.scrollTo(selected)
                         })
                     }
-                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.6 : UIScreen.main.bounds.height / 2.0).disabled(true)
+                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.6 : UIScreen.main.bounds.height / 2.2).disabled(true)
                 
                 if showCross {
                     VStack{
@@ -93,8 +93,6 @@ struct OnboardingView: View {
             
             
             Spacer()
-            
-            
             ZStack{
                 RoundedRectangle(cornerRadius: 10).stroke(Color("ButtonRed"), lineWidth: 0.5).frame(width: buttonWith, height: 41)
                 HStack{
@@ -102,6 +100,7 @@ struct OnboardingView: View {
                     Toggle("", isOn: $toggle).toggleStyle(SwitchToggleStyle(tint: Color("ButtonRed")))
                 }.padding(14)
             }.fixedSize()
+            
             
             Button(action: {
                 if !buttonLock{
