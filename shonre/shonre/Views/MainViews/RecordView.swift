@@ -80,7 +80,7 @@ struct RecordView: View {
                         }
                     }
                 }
-            }.frame(width: 310)
+            }.frame(width: 320)
             
 //            Button(action: {
 //                
