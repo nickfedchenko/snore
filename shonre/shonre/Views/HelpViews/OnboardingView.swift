@@ -27,7 +27,6 @@ struct OnboardingView: View {
     var onboardingParts : [OnboardingPart] = OnboardingPart.data
     
     var body: some View {
-        let pwText = DS.apphudHelper.getPayWallText()
         VStack{
             ZStack{
                 ScrollView(.horizontal, showsIndicators: false){
@@ -53,7 +52,7 @@ struct OnboardingView: View {
                             proxy.scrollTo(selected)
                         })
                     }
-                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.6 : UIScreen.main.bounds.height / 2.2).disabled(true)
+                }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.9 : UIScreen.main.bounds.height / 2.2).disabled(true)
                 
                 if showCross {
                     VStack{

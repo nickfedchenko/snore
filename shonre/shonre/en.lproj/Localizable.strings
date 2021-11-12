@@ -67,7 +67,7 @@
 "@% Sounds" = "@% Sounds";
 "Save" = "Save";
 "Sounds" = "Sounds";
-
+"Mix" = "Mix";
 
 // Onboarding View
 "Animated enabled" = "Animated enabled";
@@ -85,4 +85,37 @@
 
 // Record List Component
 "Delete" = "Delete";
-"Record @%" = "Record @%";
+"Record %lld" = "Record %lld";
+
+// Mark: - Новые перевод
+"Continue" = "Continue";
+
+"Welcome" = "Welcome";
+"Welcome the snore recording and tracking app" = "Welcome the snore recording and tracking app";
+
+"Placement" = "Placement";
+"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+
+"Results" = "Results";
+"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+
+"Get insights about your snore" = "Get insights about your snore";
+"You can test snoring remedies and lifestyle changes to try to reduce " = "You can test snoring remedies and lifestyle changes to try to reduce ";
+
+"Recording %lld" = "Recording %lld";
+
+"Duration of snoring" = "Duration of snoring";
+"Sleep duration" = "Sleep duration";
+"Sleep quality" = "Sleep quality";
+"Go to bed" = "Go to bed";
+
+"This day average is %lld hours %lld min" = "This day average is %lld hours %lld min";
+
+"Mon" = "Mon";
+"Tue" = "Tue";
+"Wen" = "Wen";
+"Thu" = "Thu";
+"Fri" = "Fri";
+"Sat" = "Sat";
+"Sun" = "Sun";
+"Mon" = "Mon";

@@ -68,9 +68,8 @@ class WhiteSound : Identifiable, ObservableObject, Codable {
         self.imgName = "noimage"
         
         let langStr = Locale.current.languageCode
-        if langStr == "en" {
-            self.name = self.nameen
-        }
+        self.name = self.nameen
+        
         if langStr == "ru" {
             self.name = self.nameru
         }

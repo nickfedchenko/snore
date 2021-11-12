@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 class CalcSoundStaticics {
+    
+    
     init(){
         
     }
@@ -248,7 +250,12 @@ class CalcSoundStaticics {
         
         let h : Int = Int(count) / 3600
         let m : Int = Int(count) % 60
-        let out : String = "This day average is \(h) hours \(m) min"
+        let langStr = Locale.current.languageCode
+        
+        var out : String = "This day average is \(h) hours \(m) min"
+        if langStr == "ru" {
+            out = "Среднее за день \(h) ч. \(m) мин."
+        }
         
         return out
     }

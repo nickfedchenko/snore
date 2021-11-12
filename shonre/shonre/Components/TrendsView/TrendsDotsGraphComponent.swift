@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrendsDotsGraphComponent: View {
-    var tittle : String
+    var tittle : LocalizedStringKey
     var subtittle : AnyView
     
     var chartParts : [ChartPart]
@@ -35,9 +35,7 @@ struct TrendsDotsGraphComponent: View {
                         
                         ForEach(chartColumn) { part in
                             ChartColumnComponent(legend: part.label, persent: part.percent, maxCharHeight: proxy.size.height).offset(x: wpadding * CGFloat(chartColumn.firstIndex(where: {$0.id == part.id})!), y: proxy.size.height * (1.0 - part.percent))
-                            
                         }
-                        
                         
                         Path { path in
                             for i in 0..<chartColumn.count {

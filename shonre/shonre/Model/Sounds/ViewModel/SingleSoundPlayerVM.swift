@@ -11,15 +11,18 @@ import AVKit
 import Combine
 
 class SingleSoundPlayerVM: ObservableObject {
+    var id : UUID = UUID()
     @Published var sound : WhiteSound
     @Published var avPlayer : AVAudioPlayer?
     
     var cancellables = Set<AnyCancellable>()
     var incideCancellables = [AnyCancellable]()
     
+    
+    private var loked : Bool = false
+    
     init(_ sound : WhiteSound) {
         self.sound = sound
-//        let url = Bundle.main.url(forResource: sound.fileName, withExtension: "mp3")
         setAudio()
         
         sound.$fileName.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in
@@ -29,16 +32,10 @@ class SingleSoundPlayerVM: ObservableObject {
         }).store(in: &cancellables)
         
         sound.$isPlaying.sink(receiveValue: {isPlaying in
-            if self.avPlayer != nil {
-                if isPlaying {
-                    if !self.avPlayer!.isPlaying{
-//                        self.avPlayer?.play()
-                    }
-                } else {
-                    if self.avPlayer!.isPlaying{
-                        self.avPlayer?.pause()
-                    }
-                }
+            if isPlaying && !self.loked {
+                self.avPlayer?.play()
+            } else {
+                self.avPlayer?.pause()
             }
         }).store(in: &cancellables)
         
@@ -46,37 +43,54 @@ class SingleSoundPlayerVM: ObservableObject {
             self.avPlayer?.volume = volume
         }).store(in: &cancellables)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+//            self.avPlayer?.play()
+//        }
+        
+    }
+    
+    func lock() {
+        loked = true
+        avPlayer?.stop()
+        avPlayer = nil
+    }
+    
+    func pausePlay() {
+        if !self.loked{
+            self.avPlayer?.pause()
+        }
+    }
+    
+    func continuePlay() {
+        if !self.loked {
             self.avPlayer?.play()
         }
     }
     
-    func pausePlay() {
-        self.avPlayer?.pause()
-    }
-    
-    func continuePlay() {
-        self.avPlayer?.play()
-    }
-    
     func setAudio(){
-        if sound.fileName != nil {
-            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let url = documentDirectory.appendingPathComponent(sound.fileName!)
-            
-            do {
-                self.avPlayer = try AVAudioPlayer(contentsOf: url)
-                self.avPlayer?.numberOfLoops = -1
-                self.avPlayer?.prepareToPlay()
+        
+            if sound.fileName != nil {
+                let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let url = documentDirectory.appendingPathComponent(sound.fileName!)
                 
-            } catch {
-                print("Error with sound")
+                do {
+                    self.avPlayer = try AVAudioPlayer(contentsOf: url)
+                    self.avPlayer?.numberOfLoops = -1
+                    self.avPlayer?.prepareToPlay()
+                    self.avPlayer?.play()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.avPlayer?.play()
+                    }
+                    
+                } catch {
+                    print("Error with sound")
+                }
             }
         }
-    }
+    
     
     func playAtTime(hour: Int, minute: Int) {
-        if self.avPlayer != nil{
+        if self.avPlayer != nil && !loked {
             self.avPlayer?.stop()
             let today = Date()
             let calendar = Calendar.current
@@ -96,7 +110,9 @@ class SingleSoundPlayerVM: ObservableObject {
             let timeOffset : TimeInterval = TimeInterval(hours * 3600 + minutes * 60)
             self.avPlayer?.play(atTime: timeOffset)
         }
-                
     }
-    
 }
+    
+    
+    
+

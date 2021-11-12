@@ -41,7 +41,6 @@ struct RecordListComponent: View {
                     Rectangle().frame(width: 74).foregroundColor(.red)
                     Button(action: {
                         self.toDeleteSound = sound
-                        
                         withAnimation{
                             self.toDelete = true
                             self.xOffset = 0
@@ -58,7 +57,7 @@ struct RecordListComponent: View {
                 HStack{
                     Text("Record \(sound.inDayCound)").font(.system(size: 17, weight: .medium)).foregroundColor(.white)
                     Spacer()
-                    Text(sound.getDateSting()).font(.system(size: 14, weight: .thin)).foregroundColor(.white)
+                    Text(sound.getBeggingText()).font(.system(size: 14, weight: .thin)).foregroundColor(.white)
                 }
                 
                 HStack{

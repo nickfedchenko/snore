@@ -23,6 +23,21 @@ struct ResultsView: View {
             ZStack{
                 ScrollView{
                         ForEach(sounds){ sound in
+                            let index = sounds.firstIndex(where: {$0.id == sound.id})!
+                            let prewSound : Sound? = index > 0 ? sounds[index - 1] : nil
+                            if prewSound == nil {
+                                HStack{
+                                    Text(sound.getDayDate()).foregroundColor(.white).font(.system(size: 19, weight: .bold))
+                                    Spacer()
+                                }.padding(.horizontal, 15)
+                            } else {
+                                if !prewSound!.sameDay(with: sound) {
+                                    HStack{
+                                        Text(sound.getDayDate()).foregroundColor(.white).font(.system(size: 19, weight: .bold))
+                                        Spacer()
+                                    }.padding(.horizontal, 15)
+                                }
+                            }
                             RecordListComponent(player: DS.soundAnalyzer.soundPlayer.getPlayer(for: sound), activeSound : $activeSound, isLinkActive : $isLinkActive, toDeleteSound : $toDeleteSound, toDelete: $toDelete)
                         }
                     if activeSound != nil {
@@ -81,6 +96,7 @@ struct ResultsView: View {
     func removeRows(at offsets: IndexSet) {
 //        numbers.remove(atOffsets: offsets)
     }
+    
 }
 
 struct ResultsView_Previews: PreviewProvider {

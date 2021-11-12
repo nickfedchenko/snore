@@ -56,8 +56,6 @@ class DataStorage : ObservableObject {
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
             
         }
-        
-        
         getProducts()
         
         self.soundStack.soundPlayer.$playingSounds.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in

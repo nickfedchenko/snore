@@ -26,7 +26,6 @@
 // Trends Vuew
 "Sleep duration" = "Длительность сна";
 "Sleep time" = "Время сна";
-"Sleep duration" = "Продолжительность";
 "Low" = "Тихо";
 "Hight" = "Громко";
 "Loud" = "Очень громко";
@@ -67,7 +66,7 @@
 "@% Sounds" = "@% Звук";
 "Save" = "Сохранить";
 "Sounds" = "Звуки";
-
+"Mix" = "Микс";
 
 // Onboarding View
 "Animated enabled" = "Анимация включена ";
@@ -85,4 +84,28 @@
 
 // Record List Component
 "Delete" = "Удалить";
-"Record @%" = "Запись @%";
+"Record %lld" = "Запись %lld";
+
+// Mark: - Новые перевод
+"Continue" = "Continue";
+
+"Welcome" = "Welcome";
+"Welcome the snore recording and tracking app" = "Welcome the snore recording and tracking app";
+
+"Placement" = "Placement";
+"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+
+"Results" = "Results";
+"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+
+"Get insights about your snore" = "Get insights about your snore";
+"You can test snoring remedies and lifestyle changes to try to reduce " = "You can test snoring remedies and lifestyle changes to try to reduce ";
+
+"Recording %lld" = "Запись %lld";
+
+"Duration of snoring" = "Duration of snoring";
+"Sleep duration" = "Sleep duration";
+"Sleep quality" = "Sleep quality";
+"Go to bed" = "Go to bed";
+
+"This day average is %lld hours %lld min" = "This day average is %lld hours %lld min";

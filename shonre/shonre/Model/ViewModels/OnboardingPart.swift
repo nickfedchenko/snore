@@ -26,3 +26,5 @@ extension OnboardingPart {
 //        OnboardingPart(tittle: "Continue to Pro", text: "Combine any sounds, Customize for yourself, Create your library", buttonText: "Start Free Trial & Continue", num: 5),
     ]
 }
+
+

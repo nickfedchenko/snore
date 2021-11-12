@@ -182,12 +182,29 @@ class Sound : Identifiable, ObservableObject {
         let langStr = Locale.current.languageCode
         if langStr == "ru" {
             formatter.locale = Locale(identifier: "ru_RU")
-            formatter.dateFormat = "EEEE, dd.MM.yyyy, HH:mm"
+            formatter.dateFormat = "dd.MM.yyyy, HH:mm"
         }
         
         if langStr == "en" {
             formatter.locale = Locale(identifier: "en")
-            formatter.dateFormat = "EEEE, dd.MM.yyyy, HH:mm"
+            formatter.dateFormat = "dd.MM.yyyy, HH:mm"
+        }
+        
+        return formatter.string(from: self.started)
+    }
+    
+    func getDayDate() -> String {
+        let formatter = DateFormatter()
+        
+        let langStr = Locale.current.languageCode
+        if langStr == "ru" {
+            formatter.locale = Locale(identifier: "ru_RU")
+            formatter.dateFormat = "EEEE, dd.MM.yyyy"
+        }
+        
+        if langStr == "en" {
+            formatter.locale = Locale(identifier: "en")
+            formatter.dateFormat = "EEEE, dd.MM.yyyy"
         }
         
         return formatter.string(from: self.started)
@@ -230,16 +247,32 @@ class Sound : Identifiable, ObservableObject {
         let m : Int = Int(self.length) / 60
         let s : Int = Int(self.length) % 60
         
+        let langStr = Locale.current.languageCode
+        
         let mStr : String = m > 9 ? "\(m)" : "0\(m)"
         let sStr : String = s > 9 ? "\(s)" : "0\(s)"
         
-        let clocks : String = h > 0 ? "\(h) hours \(mStr) min" : "\(mStr) min \(sStr) sec"
-        let begin = "begin at "
+        var clocks : String = h > 0 ? "\(h) hours \(mStr) min" : "\(mStr) min \(sStr) sec"
+        var begin = "begin at "
+        
+        if langStr == "ru" {
+            clocks = h > 0 ? "\(h) ч. \(mStr) мин." : "\(mStr) мин. \(sStr) сек."
+            begin = "начала "
+        }
         
         return "\(begin) \(startedStr) (\(clocks))"
     }
     
-    
+    func sameDay(with sound : Sound) -> Bool {
+//        sound.started.day
+        let calendar = Calendar.current
+        
+        let date1 = calendar.startOfDay(for: self.started)
+        let date2 = calendar.startOfDay(for: sound.started)
+        let days = calendar.dateComponents([.day],from: date1, to: date2).day!
+        
+        return days == 0
+    }
 }
 
 

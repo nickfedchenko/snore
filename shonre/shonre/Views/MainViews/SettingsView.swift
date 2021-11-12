@@ -57,7 +57,17 @@ struct SettingsView: View {
             }.padding(.horizontal, 15).foregroundColor(.white)
             Spacer()
         }.background(Color("Back").ignoresSafeArea()).buttonStyle(PlainButtonStyle()).sheet(isPresented: $showEmail, content: {
-            MailView(isShowing: self.$showEmail, result: self.$result)
+            VStack{
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        showEmail = false
+                    }, label: {
+                        Image(systemName: "xmark").resizable().foregroundColor(Color.black).frame(width: 16, height: 16)
+                    })
+                }.padding().background(Color("AccentColor").ignoresSafeArea())
+                MailView(isShowing: self.$showEmail, result: self.$result)
+            }
         })
     }
 }

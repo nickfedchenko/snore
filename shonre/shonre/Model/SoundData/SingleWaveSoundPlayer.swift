@@ -64,7 +64,6 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
     func setTime(proggres : Double) {
         if avPlayer != nil {
             avPlayer!.currentTime = Double(avPlayer!.duration) * proggres / 100.0
-            avPlayer!.play()
         }
     }
     

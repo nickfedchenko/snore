@@ -135,13 +135,6 @@ class SoundPlayer: ObservableObject{
                 newSoundPlay.avPlayer?.volume = newSoundPlay.sound.volume * percent
             }).store(in: &newCan)
             
-            playAt.$isOn.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {isOn in
-                if isOn {
-                    newSoundPlay.playAtTime(hour: self.playAt.hour, minute: self.playAt.minutes)
-                } else {
-                    newSoundPlay.avPlayer?.stop()
-                }
-            }).store(in: &newCan)
             
             self.canDict.updateValue(newCan, forKey: newSoundPlay.sound.id)
         }
@@ -151,6 +144,7 @@ class SoundPlayer: ObservableObject{
         let allToDell = playingSounds.filter({$0.sound.id == sound.id})
         
         for toDellSound in allToDell {
+            toDellSound.lock()
             let soundIndex = playingSounds.firstIndex(where: {$0.sound.id == toDellSound.sound.id})
             
             if soundIndex != nil {
