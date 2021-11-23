@@ -10,11 +10,11 @@ import SwiftUI
 struct TrendsView: View {
     @EnvironmentObject var DS : DataStorage
     
-    @State var showPrePay : Bool = false
+    @State var isPremium : Bool = false
     
     var body: some View {
         ZStack{
-            if !showPrePay {
+            if !isPremium {
                 VStack{
                     ScrollView{
                         TrendsGraphComponent(tittle: "Sleep duration", subtittle:  AnyView(HStack{
@@ -77,14 +77,18 @@ struct TrendsView: View {
                 }.background(Color("Back").ignoresSafeArea())
             }
                 
-            if !showPrePay {
+            if !isPremium {
                 VStack{
                     Spacer()
                     Text("Track your progress").foregroundColor(Color.white).font(.system(size: 28, weight: .semibold))
                     Text("Visualize your snoring changing over time and see the impact of remedies and factors").foregroundColor(Color.white).font(.system(size: 16)).multilineTextAlignment(.center).padding(.horizontal, 45).padding(.top, 20).padding(.bottom, 52)
                     ZStack{
                         RoundedRectangle(cornerRadius: 38).foregroundColor(Color("ButtonRed")).frame(height: 47)
-                        Text("Upgrade").font(.system(size: 17)).foregroundColor(Color.white)
+                        Button(action: {
+                            DS.apphudHelper.quickPurchase()
+                        }){
+                            Text("Upgrade").font(.system(size: 17)).foregroundColor(Color.white)
+                        }
                     }.padding(.horizontal,80)
                     Spacer()
                     HStack{
@@ -93,9 +97,9 @@ struct TrendsView: View {
                 }.background(Color.black.opacity(0.7).ignoresSafeArea())
             }
         }.onAppear(perform: {
-            self.showPrePay = !self.DS.apphudHelper.isPremium
+            self.isPremium = self.DS.apphudHelper.isPremium
         }).onReceive(self.DS.apphudHelper.$isPremium, perform: {val in
-            self.showPrePay = !val
+            self.isPremium = val
         })
     }
 }

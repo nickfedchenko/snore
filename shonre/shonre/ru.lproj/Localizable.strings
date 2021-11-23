@@ -87,25 +87,25 @@
 "Record %lld" = "Запись %lld";
 
 // Mark: - Новые перевод
-"Continue" = "Continue";
+"Continue" = "Продолжить";
 
-"Welcome" = "Welcome";
-"Welcome the snore recording and tracking app" = "Welcome the snore recording and tracking app";
+"Welcome" = "Добро пожаловать в Snore app";
+"Welcome the snore recording and tracking app" = "Добро пожаловать в приложение для записи и отслеживания храпа";
 
-"Placement" = "Placement";
-"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+"Placement" = "Расположение";
+"Place device next to your bed. Keep the charger connected" = "Разместите устройство рядом с кроватью. Держите зарядное устройство подключенным";
 
-"Results" = "Results";
-"Place device next to your bed. Keep the charger connected" = "Place device next to your bed. Keep the charger connected";
+"Results" = "Результаты";
+"Place device next to your bed. Keep the charger connected" = "Разместите устройство рядом с кроватью. Держите зарядное устройство подключенным";
 
-"Get insights about your snore" = "Get insights about your snore";
-"You can test snoring remedies and lifestyle changes to try to reduce " = "You can test snoring remedies and lifestyle changes to try to reduce ";
+"Get insights about your snore" = "Получите представление о своем храпе";
+"You can test snoring remedies and lifestyle changes to try to reduce " = "Вы можете протестировать средства от храпа и изменить образ жизни, чтобы попытаться уменьшить";
 
 "Recording %lld" = "Запись %lld";
 
-"Duration of snoring" = "Duration of snoring";
-"Sleep duration" = "Sleep duration";
-"Sleep quality" = "Sleep quality";
-"Go to bed" = "Go to bed";
+"Duration of snoring" = "Длительность храпа";
+"Sleep duration" = "Длительность сна";
+"Sleep quality" = "Качество сна";
+"Go to bed" = "Время отхода ко сну";
 
-"This day average is %lld hours %lld min" = "This day average is %lld hours %lld min";
+"This day average is %lld hours %lld min" = "В среднем за день  %lld hours %lld мин.";

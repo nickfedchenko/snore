@@ -39,6 +39,7 @@
 		8BABCEDB2707251C00BBAE54 /* ChartPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABCEDA2707251C00BBAE54 /* ChartPart.swift */; };
 		8BABCEDE270786AA00BBAE54 /* TrendsColorGraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABCEDD270786A900BBAE54 /* TrendsColorGraphComponent.swift */; };
 		8BABCEE02707882F00BBAE54 /* ChartColorColumnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABCEDF2707882F00BBAE54 /* ChartColorColumnComponent.swift */; };
+		8BAC2C76274D085C00800100 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAC2C75274D085C00800100 /* NotificationHelper.swift */; };
 		8BC56F222718251F001A20AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BC56F212718251F001A20AD /* GoogleService-Info.plist */; };
 		8BD0671027336C7300FF5689 /* DSWaveformImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD0670F27336C7300FF5689 /* DSWaveformImage */; };
 		8BD5471E2714493000AAD506 /* CalcSoundStaticics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */; };
@@ -168,6 +169,7 @@
 		8BABCEDA2707251C00BBAE54 /* ChartPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPart.swift; sourceTree = "<group>"; };
 		8BABCEDD270786A900BBAE54 /* TrendsColorGraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsColorGraphComponent.swift; sourceTree = "<group>"; };
 		8BABCEDF2707882F00BBAE54 /* ChartColorColumnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorColumnComponent.swift; sourceTree = "<group>"; };
+		8BAC2C75274D085C00800100 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		8BB37394273947B0002C031E /* shonre.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = shonre.entitlements; sourceTree = "<group>"; };
 		8BC56F212718251F001A20AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcSoundStaticics.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				8BD5474B2715632000AAD506 /* ViewControll.swift */,
 				8BD5477D27157AE300AAD506 /* ApphudHelper.swift */,
 				8BD5478A2715B4D700AAD506 /* Bundle-Decodable.swift */,
+				8BAC2C75274D085C00800100 /* NotificationHelper.swift */,
 			);
 			path = HelpersManagers;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				8BFE212E270F0E9800A71709 /* SoundScrollPlayComponent.swift in Sources */,
 				8BF72932270DB586000CBDA4 /* SoundCore+CoreDataClass.swift in Sources */,
 				8BD547352715621800AAD506 /* WhiteSound.swift in Sources */,
+				8BAC2C76274D085C00800100 /* NotificationHelper.swift in Sources */,
 				8BD547592715656100AAD506 /* SoundsView.swift in Sources */,
 				8BD547442715628300AAD506 /* MixeCore+CoreDataProperties.swift in Sources */,
 				8BABCEBD2706E12400BBAE54 /* MainView.swift in Sources */,
@@ -1202,6 +1206,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shonre/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snore Recorder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone acces for recording sounds of snoring";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1215,7 +1220,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1240,6 +1245,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shonre/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snore Recorder";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone acces for recording sounds of snoring";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1253,7 +1259,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.0;
+				MARKETING_VERSION = 5.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
