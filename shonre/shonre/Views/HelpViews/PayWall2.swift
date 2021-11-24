@@ -33,7 +33,7 @@ struct PayWall2: View {
                                 Text(DS.apphudHelper.curPayWallText2.time1).foregroundColor(.white).font(.system(size: 33, weight: .semibold)).multilineTextAlignment(.center).fixedSize().padding(.top, 10)
                                 Text(DS.apphudHelper.skProdInfo21.price).foregroundColor(.white).font(.system(size: 11, weight: .semibold))
                                 Rectangle().foregroundColor(.black).frame(height:4)
-                                Text("\(DS.apphudHelper.skProdInfo21.week_price) / week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
+                                Text("\(DS.apphudHelper.skProdInfo21.week_price)/week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
                             }
                         }
                     }
@@ -50,7 +50,7 @@ struct PayWall2: View {
                                 Text(DS.apphudHelper.curPayWallText2.time2).foregroundColor(.white).font(.system(size: 33, weight: .semibold)).multilineTextAlignment(.center).fixedSize()
                                 Text(DS.apphudHelper.skProdInfo22.price).foregroundColor(.white).font(.system(size: 11, weight: .semibold))
                                 Rectangle().foregroundColor(.black).frame(height:4)
-                                Text("\(DS.apphudHelper.skProdInfo22.week_price) / week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
+                                Text("\(DS.apphudHelper.skProdInfo22.week_price)/week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
                             }
                         }
                     }
@@ -66,7 +66,7 @@ struct PayWall2: View {
                                 Text(DS.apphudHelper.curPayWallText2.time3).foregroundColor(.white).font(.system(size: 33, weight: .semibold)).multilineTextAlignment(.center).fixedSize().padding(.top, 10)
                                 Text(DS.apphudHelper.skProdInfo23.price).foregroundColor(.white).font(.system(size: 11, weight: .semibold))
                                 Rectangle().foregroundColor(.black).frame(height:4)
-                                Text("\(DS.apphudHelper.skProdInfo23.week_price) / week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
+                                Text("\(DS.apphudHelper.skProdInfo23.week_price)/week").foregroundColor(.white).font(.system(size: 11, weight: .semibold)).padding(.bottom, 10)
                             }
                         }
                     }

@@ -62,6 +62,7 @@ class DataStorage : ObservableObject {
             self.PWnum = userdefault.integer(forKey: "PWnum")
         }
         getProducts()
+        getProducts2()
         self.soundStack.soundPlayer.$playingSounds.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in
             self.viewControll.showMixeBoard = !self.soundStack.soundPlayer.playingSounds.isEmpty
             
@@ -108,6 +109,24 @@ class DataStorage : ObservableObject {
                         self.apphudHelper.payWallsText = payWalls
                         self.apphudHelper.choosePWText()
                         print("PW GET")
+                      } catch let error {
+                        print("Error Dec")
+                        print(error)
+                      }
+                   }
+            }.resume()
+        }
+    }
+    
+    func getProducts2() {
+        if let url = URL(string: "https://app.finanse.space/app/snore2") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                  if let data = data {
+                    do {
+                        let payWalls = try JSONDecoder().decode([PayWallText2].self, from: data)
+                        self.apphudHelper.payWallsText2 = payWalls
+                        self.apphudHelper.choosePWText2()
+                        print("PW GET 2")
                       } catch let error {
                         print("Error Dec")
                         print(error)

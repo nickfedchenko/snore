@@ -109,3 +109,5 @@
 "Go to bed" = "就寝時間";
 
 "This day average is %lld hours %lld min" = "В среднем за день  %lld hours %lld мин.";
+
+"@%/week" = "@% / 一週間";

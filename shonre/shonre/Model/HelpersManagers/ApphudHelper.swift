@@ -125,7 +125,10 @@ class ApphudHelper: ObservableObject {
         let langStr = Locale.current.languageCode
         for text in payWallsText2 {
             if text.lang == langStr {
-                
+                curPayWallText2 = text
+                purchaseId21 = text.purchaseId1
+                purchaseId22 = text.purchaseId2
+                purchaseId23 = text.purchaseId3
             }
         }
         
@@ -188,10 +191,9 @@ class ApphudHelper: ObservableObject {
                 print("upadtePayWall wall")
                 for prod in wall.products {
                     print(prod.productId)
-                    print(prod.skProduct)
                     if prod.skProduct != nil {
                         self.allProducts.append(prod)
-                        print("upadtePayWall Secces")
+                        print("skProduct OK")
                     }
                 }
             }
@@ -231,6 +233,7 @@ class ApphudHelper: ObservableObject {
     
     
     func saveSKProduct() {
+        skProdInfo = [SKProdInfo]()
         for prod in self.allProducts {
             var trial_time = ""
             var time = ""
@@ -267,11 +270,17 @@ class ApphudHelper: ObservableObject {
         self.skProdInfo21 = self.getSKProdInfo(productId: purchaseId21)
         self.skProdInfo22 = self.getSKProdInfo(productId: purchaseId22)
         self.skProdInfo23 = self.getSKProdInfo(productId: purchaseId23)
+        
+        print("self.skProdInfo21 \(self.skProdInfo21.purchaseId) \(self.skProdInfo21.price)")
+        print("self.skProdInfo22 \(self.skProdInfo22.purchaseId) \(self.skProdInfo22.price)")
+        print("self.skProdInfo23 \(self.skProdInfo23.purchaseId) \(self.skProdInfo23.price)")
+        
     }
     
     func getSKProdInfo(productId : String) -> SKProdInfo {
         for info in self.skProdInfo {
             if info.purchaseId == productId {
+                print("info \(info.purchaseId) OK get")
                 return info
             }
         }

@@ -119,6 +119,7 @@
 "Sat" = "Sat";
 "Sun" = "Sun";
 "Mon" = "Mon";
+"@%/week" = "@% / week";
 
 "Track your progress" = "Track your progress";
 "Visualize your snoring changing over time and see the impact of remedies and factors" = "Visualize your snoring changing over time and see the impact of remedies and factors";
