@@ -7,11 +7,14 @@
 
 import Foundation
 import ApphudSDK
+import FirebaseCrashlytics
 
 class ApphudHelper: ObservableObject {
     @Published var isPremium : Bool
     var payWallsText : [PayWallText]
+    var payWallsText2 : [PayWallText2]
     @Published var curPayWallText : PayWallText
+    @Published var curPayWallText2 : PayWallText2
     
     @Published var pwTitleText : String = ""
     
@@ -20,7 +23,7 @@ class ApphudHelper: ObservableObject {
     var allProducts : [ApphudProduct] = [ApphudProduct]()
     var product : ApphudProduct?
     var timer : Timer?
-    
+    var skProdInfo : [SKProdInfo] = [SKProdInfo]()
     //
     let userdefault = UserDefaults.standard
     
@@ -36,18 +39,33 @@ class ApphudHelper: ObservableObject {
     @Published var ButtonText : String = " "
     @Published var Price1 : String = " "
     
+    var purchaseId21 : String = ""
+    var purchaseId22 : String = ""
+    var purchaseId23 : String = ""
+    
+    @Published var skProdInfo21 : SKProdInfo = SKProdInfo(purchaseId: "", price: "", time: "", trial_time: "", week_price: "")
+    @Published var skProdInfo22 : SKProdInfo = SKProdInfo(purchaseId: "", price: "", time: "", trial_time: "", week_price: "")
+    @Published var skProdInfo23 : SKProdInfo = SKProdInfo(purchaseId: "", price: "", time: "", trial_time: "", week_price: "")
     
     init() {
         Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
         self.paywalls = Apphud.paywalls
         
         self.payWallsText = Bundle.main.decodePayWallsText("PayWallText.json")
+        self.payWallsText2 = Bundle.main.decodePayWallsText2("PayWallText2.json")
         self.curPayWallText = self.payWallsText[0]
+        self.curPayWallText2 = self.payWallsText2[0]
         
         let langStr = Locale.current.languageCode
         for text in payWallsText {
             if text.lang == langStr {
                 curPayWallText = text
+            }
+        }
+        
+        for text in payWallsText2 {
+            if text.lang == langStr {
+                curPayWallText2 = text
             }
         }
 
@@ -78,7 +96,6 @@ class ApphudHelper: ObservableObject {
             self.ButtonText = userdefault.string(forKey: "ButtonText") ?? ""
 
         }
-        
         upadtePayWall()
     }
     
@@ -104,6 +121,16 @@ class ApphudHelper: ObservableObject {
         }
     }
     
+    func choosePWText2() {
+        let langStr = Locale.current.languageCode
+        for text in payWallsText2 {
+            if text.lang == langStr {
+                
+            }
+        }
+        
+    }
+    
     private func getPayWalls() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] timer in
             if let self = self{
@@ -116,6 +143,25 @@ class ApphudHelper: ObservableObject {
     
     func quickPurchase() {
         self.product = self.allProducts.first(where: {$0.productId == purchaseId1})
+        if self.product != nil {
+            self.purchase(product: self.product!)
+        }
+    }
+    
+    func quickPurchase(selectedProd: Int) {
+        var prodId = ""
+        switch selectedProd{
+        case 0:
+            prodId = self.purchaseId21
+        case 1:
+            prodId = self.purchaseId22
+        case 2:
+            prodId = self.purchaseId23
+        default:
+            prodId = self.purchaseId21
+        }
+        
+        self.product = self.allProducts.first(where: {$0.productId == prodId})
         if self.product != nil {
             self.purchase(product: self.product!)
         }
@@ -188,7 +234,8 @@ class ApphudHelper: ObservableObject {
         for prod in self.allProducts {
             var trial_time = ""
             var time = ""
-            
+            var weeks = 1
+            var week_price = ""
             
             let price = "\(prod.skProduct!.price.stringValue) \(prod.skProduct!.priceLocale.currencySymbol ?? "")"
             
@@ -196,8 +243,13 @@ class ApphudHelper: ObservableObject {
                 trial_time = "\(prod.skProduct!.introductoryPrice!.subscriptionPeriod.numberOfUnits)"
             }
             
+            if prod.skProduct!.subscriptionPeriod != nil {
+                weeks = prod.skProduct!.subscriptionPeriod!.numberOfUnits / 7
+                weeks = weeks != 0 ? weeks : 1
+                week_price = "\(prod.skProduct!.price.intValue / weeks)\(prod.skProduct!.priceLocale.currencySymbol ?? "")"
+            }
+                
             time = "\(prod.skProduct!.subscriptionPeriod!.numberOfUnits)"
-            
             if prod.productId == purchaseId1 {
                 self.SKprice1 = price
                 self.SKtime1 = time
@@ -209,7 +261,28 @@ class ApphudHelper: ObservableObject {
                 userdefault.set(SKtime1, forKey: "SKtime")
             }
             
+            skProdInfo.append(SKProdInfo(purchaseId: prod.productId, price: price, time: time, trial_time: trial_time, week_price: week_price))
         }
+        
+        self.skProdInfo21 = self.getSKProdInfo(productId: purchaseId21)
+        self.skProdInfo22 = self.getSKProdInfo(productId: purchaseId22)
+        self.skProdInfo23 = self.getSKProdInfo(productId: purchaseId23)
     }
     
+    func getSKProdInfo(productId : String) -> SKProdInfo {
+        for info in self.skProdInfo {
+            if info.purchaseId == productId {
+                return info
+            }
+        }
+        return SKProdInfo(purchaseId: productId, price: "", time: "", trial_time: "", week_price: "")
+    }
+}
+
+struct SKProdInfo {
+    var purchaseId : String
+    var price : String
+    var time : String
+    var trial_time : String
+    var week_price : String
 }

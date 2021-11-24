@@ -10,6 +10,10 @@
 		08D66D25C63FBC030ABD7B1F /* Pods_shonre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4858A6AC238C871650B0617E /* Pods_shonre.framework */; };
 		3C0E0A77219973EFF677EC94 /* Pods_shonre_shonreUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E93B19829326C5876622A6 /* Pods_shonre_shonreUITests.framework */; };
 		574061F25B021A5CC18BF4A8 /* Pods_shonreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8315667B57AA8CC04ED553 /* Pods_shonreTests.framework */; };
+		8B04B0B4274E4E7200D61CB8 /* PayWall2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B04B0B3274E4E7200D61CB8 /* PayWall2.swift */; };
+		8B04B0B6274E4E7D00D61CB8 /* PayWall3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B04B0B5274E4E7D00D61CB8 /* PayWall3.swift */; };
+		8B04B0B8274E779200D61CB8 /* PayWallText2.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B04B0B7274E779200D61CB8 /* PayWallText2.json */; };
+		8B04B0BA274E79AB00D61CB8 /* PayWallText2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */; };
 		8B25ECD02710151100871B02 /* SircleChartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECCF2710151100871B02 /* SircleChartComponent.swift */; };
 		8B25ECD327101C3200871B02 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECD227101C3200871B02 /* PieChartView.swift */; };
 		8B35E4CE273046B600C7BD4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */; };
@@ -136,6 +140,10 @@
 		4858A6AC238C871650B0617E /* Pods_shonre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shonre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E93B19829326C5876622A6 /* Pods_shonre_shonreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shonre_shonreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8834F6B05C87CB704A107CD1 /* Pods-shonreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shonreTests.debug.xcconfig"; path = "Target Support Files/Pods-shonreTests/Pods-shonreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B04B0B3274E4E7200D61CB8 /* PayWall2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWall2.swift; sourceTree = "<group>"; };
+		8B04B0B5274E4E7D00D61CB8 /* PayWall3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWall3.swift; sourceTree = "<group>"; };
+		8B04B0B7274E779200D61CB8 /* PayWallText2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PayWallText2.json; sourceTree = "<group>"; };
+		8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallText2.swift; sourceTree = "<group>"; };
 		8B25ECCF2710151100871B02 /* SircleChartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SircleChartComponent.swift; sourceTree = "<group>"; };
 		8B25ECD227101C3200871B02 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 		8BABCEDD270786A900BBAE54 /* TrendsColorGraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsColorGraphComponent.swift; sourceTree = "<group>"; };
 		8BABCEDF2707882F00BBAE54 /* ChartColorColumnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColorColumnComponent.swift; sourceTree = "<group>"; };
 		8BAC2C75274D085C00800100 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
+		8BAC2C77274D189400800100 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8BB37394273947B0002C031E /* shonre.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = shonre.entitlements; sourceTree = "<group>"; };
 		8BC56F212718251F001A20AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcSoundStaticics.swift; sourceTree = "<group>"; };
@@ -391,6 +400,7 @@
 		8BABCEB92706E0C800BBAE54 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				8B04B0B7274E779200D61CB8 /* PayWallText2.json */,
 				8BD5478C2715B58500AAD506 /* PayWallText.json */,
 			);
 			path = JSON;
@@ -552,6 +562,7 @@
 				8BD547522715644C00AAD506 /* AttenuationVM.swift */,
 				8BD547862715B33C00AAD506 /* OnboardingPart.swift */,
 				8BD547882715B3E400AAD506 /* PayWallText.swift */,
+				8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -609,6 +620,8 @@
 				8BD547842715B2FA00AAD506 /* OnboardingView.swift */,
 				8BD547802715B13100AAD506 /* MailView.swift */,
 				8BD547822715B14000AAD506 /* WebView.swift */,
+				8B04B0B3274E4E7200D61CB8 /* PayWall2.swift */,
+				8B04B0B5274E4E7D00D61CB8 /* PayWall3.swift */,
 			);
 			path = HelpViews;
 			sourceTree = "<group>";
@@ -764,6 +777,7 @@
 				en,
 				Base,
 				ru,
+				ja,
 			);
 			mainGroup = 8B81CAEC2705B05400E92CC4;
 			packageReferences = (
@@ -792,6 +806,7 @@
 				8BF4836F270C6E79002D0A4D /* example_sound.mp3 in Resources */,
 				8B35E4CE273046B600C7BD4A /* Storyboard.storyboard in Resources */,
 				8B81CAFD2705B05700E92CC4 /* Assets.xcassets in Resources */,
+				8B04B0B8274E779200D61CB8 /* PayWallText2.json in Resources */,
 				8BC56F222718251F001A20AD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -959,12 +974,14 @@
 				8BD5474A2715628300AAD506 /* MixSoundCore+CoreDataProperties.swift in Sources */,
 				8BD5477827157A6300AAD506 /* ChooseStopTimeComponent.swift in Sources */,
 				8BABCECE2706E84500BBAE54 /* SettingsView.swift in Sources */,
+				8B04B0B6274E4E7D00D61CB8 /* PayWall3.swift in Sources */,
 				8BF72922270DAE6F000CBDA4 /* WaveSounds.xcdatamodeld in Sources */,
 				8BABCED627071D3100BBAE54 /* ChartColumnComponent.swift in Sources */,
 				8BFE2132270F1FD000A71709 /* PlayerChartComponent.swift in Sources */,
 				8BF48372270C6F76002D0A4D /* SingleWave.swift in Sources */,
 				8BD547452715628300AAD506 /* LikedMixeCore+CoreDataClass.swift in Sources */,
 				8BD5476F2715717300AAD506 /* DelayedLaunchComponent.swift in Sources */,
+				8B04B0B4274E4E7200D61CB8 /* PayWall2.swift in Sources */,
 				8BD5472E2715621800AAD506 /* SoundPlayer.swift in Sources */,
 				8BD5476C2715717300AAD506 /* SoundViewCircleComponent.swift in Sources */,
 				8BD5476E2715717300AAD506 /* AddMixeImagesComponent.swift in Sources */,
@@ -984,6 +1001,7 @@
 				8BD547852715B2FA00AAD506 /* OnboardingView.swift in Sources */,
 				8BABCEDE270786AA00BBAE54 /* TrendsColorGraphComponent.swift in Sources */,
 				8BD547312715621800AAD506 /* WhiteSoundStack.swift in Sources */,
+				8B04B0BA274E79AB00D61CB8 /* PayWallText2.swift in Sources */,
 				8BF72935270DB586000CBDA4 /* SingleWaveCore+CoreDataProperties.swift in Sources */,
 				8BD5472C2715621800AAD506 /* WhiteSoundCDH.swift in Sources */,
 				8BD547482715628300AAD506 /* WhiteSoundCore+CoreDataProperties.swift in Sources */,
@@ -1068,6 +1086,7 @@
 			children = (
 				8B8F71C327196179004054DF /* en */,
 				8B8F71C52719617A004054DF /* ru */,
+				8BAC2C77274D189400800100 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

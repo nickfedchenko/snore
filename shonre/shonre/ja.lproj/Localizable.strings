@@ -1,0 +1,111 @@
+/*
+  Localizable.strings
+  shonre
+
+  Created by Александр Шендрик on 15.10.2021.
+  
+*/
+
+// BottomBar
+"Record" = "記録";
+"Results" = "結果";
+"Trends" = "トレンド";
+"Sounds" = "サウンド";
+"Settings" = "設定";
+
+// Record View
+"Sleep Control" = "スリープコントロール";
+"Sensitivity\nlevel" = "感度レベル ";
+"Delay\nactivation" = "遅れていたスタートが始まるのは";
+
+
+// Results View
+"Are you sure you want to delete the entry?" = "本当にレコードを削除しますか？";
+"Cancel" = "キャンセル";
+
+// Trends Vuew
+"Sleep duration" = "睡眠持続時間 ";
+"Sleep time" = "睡眠持続時間";
+"Low" = "静かな";
+"Hight" = "うるさい";
+"Loud" = "うるさい";
+"Sleep quality" = "睡眠の質";
+
+// Settings View
+"Settings" = "設定";
+"App functions" = "アプリの機能";
+"Restore purchase" = "購入を復元する";
+"Сontact the developer" = "開発者への連絡";
+
+// Sensitivy Level View
+"Sensitivy" = "感度レベル";
+"Done" = "終わり";
+
+// Single Sound View
+"Recording @%" = "記録 @%";
+"Started/Stoped" = "始める/ストップ";
+"Time in Bed" = "寝る時間";
+"Time snoring" = "いびきの持続時間";
+
+// Delayed Launch View
+"off" = "スイッチをオフにします";
+"5 minutes" = "5 分";
+"10 minutes" = "10 分";
+"15 minutes" = "15 分";
+"20 minutes" = "20 分";
+"30 minutes" = "30 分";
+"45 minutes" = "45 分";
+"1 hour" = "1 時間";
+"2 hour" = "2 時間";
+"3 hour" = "3 時間";
+
+// Mixer View
+"Turn off" = "スイッチをオフにします";
+"Turn on" = "オンにする";
+"No sounds" = "音が出ない";
+"@% Sounds" = "@% Звук";
+"Save" = "保存する";
+"Sounds" = "Звуки";
+"Mix" = "ミックス";
+
+// Onboarding View
+"Animated enabled" = "アニメーションが含まれています";
+"Privacy Policy" = "Privacy Policy";
+"Terms of use" = "Terms of use";
+
+
+// Delayed Launch Component
+"Delayed Launch" = "Отложный запуск";
+"Playback will start at" = "遅れていたスタートが始まるのは";
+
+// Choose Stop Time Component
+"How long do you want the sound to play?" = "Как долго воспроизводить аудио";
+"Ready" = "Готово";
+
+// Record List Component
+"Delete" = "Удалить";
+"Record %lld" = "Запись %lld";
+
+// Mark: - Новые перевод
+"Continue" = "続ける";
+
+"Welcome" = "Snoreアプリへようこそ";
+"Welcome the snore recording and tracking app" = "Snoreアプリへようこそ";
+
+"Placement" = "位置";
+"Place device next to your bed. Keep the charger connected" = "端末をベッドに近づけ、充電状態にする";
+
+"Results" = "結果";
+"Place device next to your bed. Keep the charger connected" = "ベッドの横にデバイスを置きます。 充電器を接続したままにします";
+
+"Get insights about your snore" = "自分のいびきの状態を把握する";
+"You can test snoring remedies and lifestyle changes to try to reduce " = "いびきの改善策を試したり、生活習慣を変えたりして、いびきを減らす努力をしましょう。";
+
+"Recording %lld" = "Запись %lld";
+
+"Duration of snoring" = "いびきの持続時間";
+"Sleep duration" = "睡眠持続時間";
+"Sleep quality" = "睡眠の質";
+"Go to bed" = "就寝時間";
+
+"This day average is %lld hours %lld min" = "В среднем за день  %lld hours %lld мин.";

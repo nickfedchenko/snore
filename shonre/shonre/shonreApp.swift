@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct shonreApp: App {
-    @ObservedObject var DS = DataStorage()
+    @ObservedObject var DS = DataStorage(notificationCenter : UNUserNotificationCenter.current())
     
     var body: some Scene {
         WindowGroup {

@@ -9,18 +9,20 @@ import Foundation
 import Combine
 import Amplitude
 import Firebase
+import ApphudSDK
 
 class DataStorage : ObservableObject {
     
     // Работа с данными
     @Published var soundAnalyzer : SoundAnalyzer
     @Published var soundStack : WhiteSoundStack
-    
+    @Published var PWnum : Int = 0
     // Отображение графики
     @Published var viewControll : ViewControll = ViewControll()
     
     // Работа с окружением
-    var apphudHelper : ApphudHelper =  ApphudHelper()
+    var apphudHelper : ApphudHelper = ApphudHelper()
+    var NCH : NotificationHelper
     
     // User Deafaults and Keys
     let userdefault = UserDefaults.standard
@@ -36,10 +38,11 @@ class DataStorage : ObservableObject {
     var isTest : Bool = false
 #endif
     
-    init() {
+    init(notificationCenter : UNUserNotificationCenter) {
         FirebaseApp.configure()
         self.soundAnalyzer = SoundAnalyzer()
         self.soundStack = WhiteSoundStack()
+        self.NCH = NotificationHelper(notificationCenter: notificationCenter)
         
         Amplitude.instance().trackingSessionEvents = true
         Amplitude.instance().initializeApiKey("05a7087670a743098b669571309fdae7")
@@ -49,15 +52,16 @@ class DataStorage : ObservableObject {
             self.viewControll.showOnboarding = true
             userdefault.set(true, forKey: firstLoad)
             self.userdefault.set(0.5, forKey: "senceLevel")
+            self.PWnum = Int.random(in: 0...2)
+            self.userdefault.set(PWnum, forKey: "PWnum")
             parceSounds()
         } else {
             self.soundStack.loadCD()
             self.viewControll.showOnboarding = !apphudHelper.isPremium
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
-            
+            self.PWnum = userdefault.integer(forKey: "PWnum")
         }
         getProducts()
-        
         self.soundStack.soundPlayer.$playingSounds.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in
             self.viewControll.showMixeBoard = !self.soundStack.soundPlayer.playingSounds.isEmpty
             
@@ -74,9 +78,10 @@ class DataStorage : ObservableObject {
             if val {
                 self.viewControll.showOnboarding = false
                 self.viewControll.showPayWall = false
+                self.NCH.del2Hourreqiest()
             }
-        }
-        ).store(in: &cancellables)
+        }).store(in: &cancellables)
+        
     }
     
     func parceSounds(){
