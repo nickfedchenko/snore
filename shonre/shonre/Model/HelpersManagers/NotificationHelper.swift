@@ -22,14 +22,19 @@ class NotificationHelper : ObservableObject {
     
     func request(){
         Amplitude.instance().logEvent("popuppermishenshown", withEventProperties: ["wasshown": true])
+        
         nc.requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
                 self.isAllowed = true
                 Apphud.setUserProperty(key: .init("nitficationpermissed"), value: self.isAllowed)
+                let identify = AMPIdentify().add("nitficationpermissed", value: true as NSObject)
+                Amplitude.instance().identify(identify!)
 //                Amplitude.instance().setValue("true", forKey: "nitficationpermissed")
             } else {
                 self.isAllowed = false
                 Apphud.setUserProperty(key: .init("nitficationpermissed"), value: self.isAllowed)
+                let identify = AMPIdentify().add("nitficationpermissed", value: false as NSObject)
+                Amplitude.instance().identify(identify!)
 //                Amplitude.instance().setValue("false", forKey: "nitficationpermissed")
             }
         }

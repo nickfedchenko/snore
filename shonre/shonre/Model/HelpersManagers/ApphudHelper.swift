@@ -13,6 +13,7 @@ class ApphudHelper: ObservableObject {
     @Published var isPremium : Bool
     var payWallsText : [PayWallText]
     var payWallsText2 : [PayWallText2]
+    var payWallsText3 : PayWallText3
     @Published var curPayWallText : PayWallText
     @Published var curPayWallText2 : PayWallText2
     
@@ -53,8 +54,11 @@ class ApphudHelper: ObservableObject {
         
         self.payWallsText = Bundle.main.decodePayWallsText("PayWallText.json")
         self.payWallsText2 = Bundle.main.decodePayWallsText2("PayWallText2.json")
+        self.payWallsText3 = Bundle.main.decodePayWallsText3("PayWallText3.json")
         self.curPayWallText = self.payWallsText[0]
         self.curPayWallText2 = self.payWallsText2[0]
+        
+        
         
         let langStr = Locale.current.languageCode
         for text in payWallsText {
@@ -76,6 +80,7 @@ class ApphudHelper: ObservableObject {
         self.isPremium = Apphud.hasActiveSubscription()
 //        self.isPremium = true
         
+        self.choosePWText3(payWallsText3: self.payWallsText3)
         getPayWalls()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.upadtePayWall()
@@ -131,7 +136,15 @@ class ApphudHelper: ObservableObject {
                 purchaseId23 = text.purchaseId3
             }
         }
+    }
+    
+    func choosePWText3(payWallsText3 : PayWallText3){
+        self.payWallsText3 = payWallsText3
+        self.payWallsText = self.payWallsText3.one
+        self.payWallsText2 = self.payWallsText3.two
         
+        choosePWText()
+        choosePWText2()
     }
     
     private func getPayWalls() {
@@ -200,7 +213,6 @@ class ApphudHelper: ObservableObject {
             self.saveSKProduct()
         }
     }
-    
     
     
     /// Восстановть покупки

@@ -73,7 +73,8 @@
 "Animated enabled" = "Animated enabled";
 "Privacy Policy" = "Privacy Policy";
 "Terms of use" = "Terms of use";
-
+"Shows you when and how loudly you snored and lets you playback audio" = "Shows you when and how loudly you snored and lets you playback audio";
+"You can test snoring remedies and lifestyle changes to try to reduce" = "You can test snoring remedies and lifestyle changes to try to reduce";
 
 // Delayed Launch Component
 "Delayed Launch" = "Delayed Launch";
@@ -127,3 +128,7 @@
 
 "Combine sounds for sleeping" = "Combine sounds for sleeping";
 "Visualize your snoring changing over time and see the impact of remedies and factors" = "Visualize your snoring changing over time and see the impact of remedies and factors";
+
+"Разблокировать доступ к аналитике  сна" = "Unlock access to sleep analytics";
+"Разблокировать доступ к звукам для сна" = "Unblock sleep sounds";
+"Неограниченное число записей" = "Unlimited sleep sounds records";

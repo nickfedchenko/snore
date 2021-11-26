@@ -17,6 +17,8 @@
 		8B25ECD02710151100871B02 /* SircleChartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECCF2710151100871B02 /* SircleChartComponent.swift */; };
 		8B25ECD327101C3200871B02 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECD227101C3200871B02 /* PieChartView.swift */; };
 		8B35E4CE273046B600C7BD4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */; };
+		8B50BCFB275107B1003BB3E7 /* PayWallText3.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B50BCFA275107B1003BB3E7 /* PayWallText3.json */; };
+		8B50BCFD275109BE003BB3E7 /* PayWallText3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50BCFC275109BE003BB3E7 /* PayWallText3.swift */; };
 		8B81CAF92705B05500E92CC4 /* shonreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81CAF82705B05500E92CC4 /* shonreApp.swift */; };
 		8B81CAFD2705B05700E92CC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B81CAFC2705B05700E92CC4 /* Assets.xcassets */; };
 		8B81CB002705B05700E92CC4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B81CAFF2705B05700E92CC4 /* Preview Assets.xcassets */; };
@@ -147,6 +149,8 @@
 		8B25ECCF2710151100871B02 /* SircleChartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SircleChartComponent.swift; sourceTree = "<group>"; };
 		8B25ECD227101C3200871B02 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		8B50BCFA275107B1003BB3E7 /* PayWallText3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PayWallText3.json; sourceTree = "<group>"; };
+		8B50BCFC275109BE003BB3E7 /* PayWallText3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallText3.swift; sourceTree = "<group>"; };
 		8B81CAF52705B05500E92CC4 /* shonre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shonre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B81CAF82705B05500E92CC4 /* shonreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shonreApp.swift; sourceTree = "<group>"; };
 		8B81CAFC2705B05700E92CC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 		8BABCEB92706E0C800BBAE54 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				8B50BCFA275107B1003BB3E7 /* PayWallText3.json */,
 				8B04B0B7274E779200D61CB8 /* PayWallText2.json */,
 				8BD5478C2715B58500AAD506 /* PayWallText.json */,
 			);
@@ -563,6 +568,7 @@
 				8BD547862715B33C00AAD506 /* OnboardingPart.swift */,
 				8BD547882715B3E400AAD506 /* PayWallText.swift */,
 				8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */,
+				8B50BCFC275109BE003BB3E7 /* PayWallText3.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -800,6 +806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B81CB002705B05700E92CC4 /* Preview Assets.xcassets in Resources */,
+				8B50BCFB275107B1003BB3E7 /* PayWallText3.json in Resources */,
 				8BD5478D2715B58500AAD506 /* PayWallText.json in Resources */,
 				8BD547762715721500AAD506 /* playlot.json in Resources */,
 				8B8F71C227196179004054DF /* Localizable.strings in Resources */,
@@ -1025,6 +1032,7 @@
 				8B998AFB270ED0DA00CC32F8 /* WaveSoundPlayer.swift in Sources */,
 				8BD5474F271563C700AAD506 /* DownloadOperation.swift in Sources */,
 				8BA5FDDE2716E185003057D3 /* SenSelectorComponent.swift in Sources */,
+				8B50BCFD275109BE003BB3E7 /* PayWallText3.swift in Sources */,
 				8BD547702715717300AAD506 /* SoundImage.swift in Sources */,
 				8BD547302715621800AAD506 /* WhiteSoundVM.swift in Sources */,
 				8BF48365270C2DE7002D0A4D /* TrendsDotsGraphComponent.swift in Sources */,
@@ -1239,7 +1247,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1278,7 +1286,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.0.0;
+				MARKETING_VERSION = 6.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

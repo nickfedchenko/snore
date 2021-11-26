@@ -19,8 +19,6 @@ struct TextScrollComponent: View {
             HStack{
                 ForEach(types){type in
                     Button(action: {
-                        let identify = AMPIdentify().add("allsound_\(type.type.rawValue)", value: NSNumber(value: 1))
-                        Amplitude.instance().identify(identify!)
                         selectedInt = types.firstIndex(where: {$0.type == type.type})!
                         selected = type.type
                     }){

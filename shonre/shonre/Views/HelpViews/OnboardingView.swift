@@ -25,7 +25,6 @@ struct OnboardingView: View {
     
     let buttonWith : CGFloat = 300
     
-    @State var PWnum : Int = 2
     @State var selectedProd : Int = 1
     
     var onboardingParts : [OnboardingPart] = OnboardingPart.data
@@ -33,7 +32,7 @@ struct OnboardingView: View {
     var body: some View {
         VStack{
             ZStack{
-                if selected != onboardingParts.count - 1 || PWnum == 0 {
+                if selected != onboardingParts.count - 1 || DS.PWnum == 0 {
                     ScrollView(.horizontal, showsIndicators: false){
                         ScrollViewReader { proxy in
                             ZStack {
@@ -49,7 +48,7 @@ struct OnboardingView: View {
                                                 }.frame(width: UIScreen.main.bounds.width)
                                             }
                                         } else{
-                                            if PWnum == 0 {
+                                            if DS.PWnum == 0 {
                                                 if UIScreen.main.bounds.width > 375 {
                                                         Image(onboardingParts[i].img).resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
                                                 } else {
@@ -72,11 +71,11 @@ struct OnboardingView: View {
                     }.ignoresSafeArea().frame(height: UIScreen.main.bounds.width > 375 ? UIScreen.main.bounds.height / 1.9 : UIScreen.main.bounds.height / 2.2).disabled(true)
                 }
                 
-                if selected == onboardingParts.count - 1 && PWnum == 1 {
+                if selected == onboardingParts.count - 1 && DS.PWnum == 1 {
                     PayWall2(selectedProd: $selectedProd).padding(.bottom, 20)
                 }
                 
-                if selected == onboardingParts.count - 1 && PWnum == 2 {
+                if selected == onboardingParts.count - 1 && DS.PWnum == 2 {
                     Spacer()
                     PayWall3(selectedProd: $selectedProd).padding(.bottom, 10)
                 }
@@ -107,20 +106,16 @@ struct OnboardingView: View {
                 Text(onboardingParts[selected].tittle).font(.system(size: 30, weight: .semibold)).multilineTextAlignment(.center).foregroundColor(Color.white)
                 Text(onboardingParts[selected].text).font(.system(size: 20, weight: .medium)).multilineTextAlignment(.center).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48)
             } else {
-                if PWnum == 0 {
+                if DS.PWnum == 0 {
                     Text(DS.apphudHelper.Text1).font(.system(size: UIScreen.main.bounds.width > 375 ? 30 : 20, weight: .semibold)).padding(.bottom, 13).multilineTextAlignment(.center).foregroundColor(Color.white)
                     Text(DS.apphudHelper.Tittle1).font(.system(size: UIScreen.main.bounds.width > 375 ? 14 : 12, weight: .medium)).foregroundColor(Color.white.opacity(0.9)).padding(.horizontal, 48).multilineTextAlignment(.center).frame(width: buttonWith)
                     Spacer()
-                    Text(DS.apphudHelper.Price1.replacingOccurrences(of: "%free_time%", with: DS.apphudHelper.SKtrial_time1).replacingOccurrences(of: "%price%", with: DS.apphudHelper.SKprice1).replacingOccurrences(of: "%time%", with: DS.apphudHelper.SKtime1)).font(.system(size: UIScreen.main.bounds.width > 375 ? 15 : 12, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith).onAppear{
-                        pwTittle = DS.apphudHelper.pwTitleText
-                    }.onReceive(DS.apphudHelper.$pwTitleText){ val in
-                        pwTittle = val
-                    }
+                    Text(DS.apphudHelper.Price1.replacingOccurrences(of: "%free_time%", with: DS.apphudHelper.SKtrial_time1).replacingOccurrences(of: "%price%", with: DS.apphudHelper.SKprice1).replacingOccurrences(of: "%time%", with: DS.apphudHelper.SKtime1)).font(.system(size: UIScreen.main.bounds.width > 375 ? 15 : 12, weight: .semibold)).foregroundColor(Color.white).multilineTextAlignment(.center).frame(width: buttonWith)
                 }
             }
             
             Spacer()
-            if selected != onboardingParts.count - 1 || PWnum == 0 {
+            if selected != onboardingParts.count - 1 || DS.PWnum == 0 {
                 ZStack{
                     RoundedRectangle(cornerRadius: 10).stroke(Color("ButtonRed"), lineWidth: 0.5).frame(width: buttonWith, height: 41)
                     HStack{
@@ -144,7 +139,7 @@ struct OnboardingView: View {
                             DS.NCH.request()
                         }
                     } else {
-                        if PWnum == 0 {
+                        if DS.PWnum == 0 {
                             DS.apphudHelper.quickPurchase()
                         } else {
                             DS.apphudHelper.quickPurchase(selectedProd: selectedProd)
@@ -154,14 +149,14 @@ struct OnboardingView: View {
                 
             }){
                 ZStack{
-                    RoundedRectangle(cornerRadius: 10).foregroundColor(selected != onboardingParts.count - 1 || PWnum != 2 ? Color("ButtonRed") : Color("PWBlue")).frame(width: buttonWith ,height: 61)
+                    RoundedRectangle(cornerRadius: 10).foregroundColor(selected != onboardingParts.count - 1 || DS.PWnum != 2 ? Color("ButtonRed") : Color("PWBlue")).frame(width: buttonWith ,height: 61)
                     Text(selected + 1 != onboardingParts.count ? onboardingParts[selected].buttonText : onboardingParts[selected].buttonText).foregroundColor(.white).font(.system(size: 21, weight: .semibold))
                 }
             }
             
             HStack{
                 ForEach(0..<onboardingParts.count){ i in
-                    Circle().frame(width: 8, height: 8).foregroundColor((selected != onboardingParts.count - 1 || PWnum != 2 ? Color("ButtonRed") : Color("PWBlue")).opacity(selected == i ? 1.0 : 0.5))
+                    Circle().frame(width: 8, height: 8).foregroundColor((selected != onboardingParts.count - 1 || DS.PWnum != 2 ? Color("ButtonRed") : Color("PWBlue")).opacity(selected == i ? 1.0 : 0.5))
                 }
             }
             
@@ -177,6 +172,12 @@ struct OnboardingView: View {
                     }
                     Spacer()
                     Button(action: {
+                        DS.apphudHelper.restore()
+                    }){
+                        Text("Restore").foregroundColor(.white.opacity(0.5)).font(.system(size: 14))
+                    }
+                    Spacer()
+                    Button(action: {
                         webView2 = true
                     }){
                         Text("Terms of use").foregroundColor(.white.opacity(0.5)).font(.system(size: 14))
@@ -185,7 +186,7 @@ struct OnboardingView: View {
                 }
             }
             Spacer().frame(height: 50)
-        }.background(Color("Back").ignoresSafeArea()).sheet(isPresented: $webView1, content: {
+        }.background(( DS.PWnum != 2 || selected != onboardingParts.count - 1 ? Color("Back") : Color("PW2BlueBack")).ignoresSafeArea()).sheet(isPresented: $webView1, content: {
             VStack{
                 HStack{
                     Spacer()

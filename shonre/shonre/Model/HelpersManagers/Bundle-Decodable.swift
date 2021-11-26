@@ -40,4 +40,18 @@ extension Bundle {
         return loaded
     }
     
+    func decodePayWallsText3(_ file: String) -> PayWallText3{
+        guard let url = self.url(forResource: file, withExtension: nil) else {
+            fatalError("Failed to locate \(file) in bundle.")
+        }
+
+        guard let data = try? Data(contentsOf: url) else {
+            fatalError("Failed to load \(file) from bundle.")
+        }
+
+        let decoder = JSONDecoder()
+
+        let loaded = try! decoder.decode(PayWallText3.self, from: data)
+        return loaded
+    }
 }

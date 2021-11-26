@@ -72,7 +72,8 @@
 "Animated enabled" = "アニメーションが含まれています";
 "Privacy Policy" = "Privacy Policy";
 "Terms of use" = "Terms of use";
-
+"Shows you when and how loudly you snored and lets you playback audio" = "いつ、どのくらいの音量で鼻を鳴らしたかを示し、音声を再生できます";
+"You can test snoring remedies and lifestyle changes to try to reduce" = "いびきの治療法やライフスタイルの変更をテストして、減らすことを試みることができます";
 
 // Delayed Launch Component
 "Delayed Launch" = "Отложный запуск";
@@ -111,3 +112,7 @@
 "This day average is %lld hours %lld min" = "В среднем за день  %lld hours %lld мин.";
 
 "@%/week" = "@% / 一週間";
+
+"Разблокировать доступ к аналитике  сна" = "睡眠分析へのアクセスのロックを解除する";
+"Разблокировать доступ к звукам для сна" = "睡眠音のブロックを解除する";
+"Неограниченное число записей" = "無制限のエントリ";

@@ -19,16 +19,12 @@ struct SoundViewCircleComponent: View {
         Button(action: {
             if (DS.soundStack.soundPlayer.playingSounds.count < 3 && !DS.apphudHelper.isPremium) || DS.apphudHelper.isPremium || DS.isTest {
                 sound.isPlaying.toggle()
-                let identify = AMPIdentify().add("\(sound.type.name())_sound_on", value: NSNumber(value: 1))
-                Amplitude.instance().identify(identify!)
             } else {
                 if !sound.isPlaying {
                     DS.viewControll.showPayWall = true
                     DS.viewControll.showSoundsView = false
                 } else {
                     sound.isPlaying.toggle()
-                    let identify = AMPIdentify().add("\(sound.type.name())_sound_on", value: NSNumber(value: 1))
-                    Amplitude.instance().identify(identify!)
                 }
             }
             if DS.soundStack.soundPlayer.playingSounds.count == 3 {

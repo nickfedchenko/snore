@@ -72,7 +72,8 @@
 "Animated enabled" = "Анимация включена ";
 "Privacy Policy" = "Privacy Policy";
 "Terms of use" = "Terms of use";
-
+"Shows you when and how loudly you snored and lets you playback audio" = "Показывает, когда и насколько громко вы храпите, и позволяет воспроизводить звук";
+"You can test snoring remedies and lifestyle changes to try to reduce" = "Вы можете протестировать средства от храпа и изменить образ жизни, чтобы попытаться уменьшить";
 
 // Delayed Launch Component
 "Delayed Launch" = "Отложный запуск";
@@ -111,3 +112,8 @@
 "This day average is %lld hours %lld min" = "В среднем за день  %lld hours %lld мин.";
 
 "@%/week" = "@% / неделя";
+
+
+"Разблокировать доступ к аналитике  сна" = "Разблокировать доступ к аналитике  сна";
+"Разблокировать доступ к звукам для сна" = "Разблокировать доступ к звукам для сна";
+"Неограниченное число записей" = "Неограниченное число записей";
