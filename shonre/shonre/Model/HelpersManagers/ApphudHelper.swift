@@ -49,7 +49,6 @@ class ApphudHelper: ObservableObject {
     @Published var skProdInfo23 : SKProdInfo = SKProdInfo(purchaseId: "", price: "", time: "", trial_time: "", week_price: "")
     
     init() {
-        Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
         self.paywalls = Apphud.paywalls
         
         self.payWallsText = Bundle.main.decodePayWallsText("PayWallText.json")

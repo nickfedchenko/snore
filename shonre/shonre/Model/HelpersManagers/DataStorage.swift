@@ -21,7 +21,7 @@ class DataStorage : ObservableObject {
     @Published var viewControll : ViewControll = ViewControll()
     
     // Работа с окружением
-    var apphudHelper : ApphudHelper = ApphudHelper()
+    var apphudHelper : ApphudHelper
     var NCH : NotificationHelper
     
     // User Deafaults and Keys
@@ -39,10 +39,12 @@ class DataStorage : ObservableObject {
 #endif
     
     init(notificationCenter : UNUserNotificationCenter) {
+        Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
         FirebaseApp.configure()
         self.soundAnalyzer = SoundAnalyzer()
         self.soundStack = WhiteSoundStack()
         self.NCH = NotificationHelper(notificationCenter: notificationCenter)
+        self.apphudHelper = ApphudHelper()
         
         Amplitude.instance().trackingSessionEvents = true
         Amplitude.instance().initializeApiKey("05a7087670a743098b669571309fdae7")
@@ -52,20 +54,21 @@ class DataStorage : ObservableObject {
             self.viewControll.showOnboarding = true
             userdefault.set(true, forKey: firstLoad)
             self.userdefault.set(0.5, forKey: "senceLevel")
-            self.PWnum = Int.random(in: 1...2)
+            self.PWnum = Int.random(in: 0...2)
             self.userdefault.set(PWnum, forKey: "PWnum")
+            
+            parceSounds()
             Apphud.setUserProperty(key: .init("PWnum"), value: self.PWnum)
             let identify = AMPIdentify().add("PWnum", value: NSNumber(value: self.PWnum))
             Amplitude.instance().identify(identify!)
-            parceSounds()
         } else {
             self.soundStack.loadCD()
             self.viewControll.showOnboarding = !apphudHelper.isPremium
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
             self.PWnum = userdefault.integer(forKey: "PWnum")
         }
-//        getProducts()
-//        getProducts2()
+        print("Apphud.userID()")
+        print(Apphud.userID())
         getProducts3()
         self.soundStack.soundPlayer.$playingSounds.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in
             self.viewControll.showMixeBoard = !self.soundStack.soundPlayer.playingSounds.isEmpty
@@ -86,6 +89,7 @@ class DataStorage : ObservableObject {
                 self.NCH.del2Hourreqiest()
             }
         }).store(in: &cancellables)
+        
         
     }
     
