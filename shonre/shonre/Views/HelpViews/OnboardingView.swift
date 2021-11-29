@@ -217,6 +217,8 @@ struct OnboardingView: View {
             }
         }).onChange(of: selected, perform: {val in
             self.showCross = (DS.apphudHelper.curPayWallText.crossView || DS.isTest) && (val + 1 == onboardingParts.count)
+        }).onAppear(perform: {
+            self.showCross = (DS.apphudHelper.curPayWallText.crossView || DS.isTest) && (selected + 1 == onboardingParts.count)
         })
     }
 }

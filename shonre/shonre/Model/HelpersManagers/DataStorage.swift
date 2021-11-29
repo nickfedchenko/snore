@@ -39,15 +39,16 @@ class DataStorage : ObservableObject {
 #endif
     
     init(notificationCenter : UNUserNotificationCenter) {
-        Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
+        
         FirebaseApp.configure()
         self.soundAnalyzer = SoundAnalyzer()
         self.soundStack = WhiteSoundStack()
         self.NCH = NotificationHelper(notificationCenter: notificationCenter)
         self.apphudHelper = ApphudHelper()
         
+        Apphud.start(apiKey: "app_XwfmyJsn9EGGYmLQ6ETUrXn8FVjLLv")
         Amplitude.instance().trackingSessionEvents = true
-        Amplitude.instance().initializeApiKey("05a7087670a743098b669571309fdae7")
+        Amplitude.instance().initializeApiKey("05a7087670a743098b669571309fdae7", userId: Apphud.userID())
         Amplitude.instance().logEvent("app_start")
         
         if userdefault.bool(forKey: firstLoad) == false {

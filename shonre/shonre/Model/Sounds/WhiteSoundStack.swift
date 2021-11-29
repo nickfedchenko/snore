@@ -126,35 +126,17 @@ class WhiteSoundStack: ObservableObject {
     }
     
     private func toLoadImage(_ sound : WhiteSound) -> WhiteSound? {
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileName = "img\(sound.FBid).jpeg"
-        let fileNameFull = documentDirectory.appendingPathComponent(fileName)
-        
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: fileNameFull.relativePath) && sound.imgName == "noimage" {
+        if sound.imgFileName == nil {
             return sound
         } else {
-            if sound.imgFileName != fileName{
-                sound.imgFileName = fileName
-                self.CDHelper.saveWhiteSound(sound)
-            }
             return nil
         }
     }
     
     private func getToLoadAudio(_ sound : WhiteSound) -> WhiteSound? {
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileName = "audio\(sound.FBid).mp3"
-        let fileNameFull = documentDirectory.appendingPathComponent(fileName)
-        
-        let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: fileNameFull.relativePath) {
+        if sound.fileName == nil {
             return sound
         } else {
-            if sound.fileName != fileName{
-                sound.fileName = fileName
-                self.CDHelper.saveWhiteSound(sound)
-            }
             return nil
         }
     }

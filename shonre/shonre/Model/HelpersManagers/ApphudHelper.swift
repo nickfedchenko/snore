@@ -57,8 +57,6 @@ class ApphudHelper: ObservableObject {
         self.curPayWallText = self.payWallsText[0]
         self.curPayWallText2 = self.payWallsText2[0]
         
-        
-        
         let langStr = Locale.current.languageCode
         for text in payWallsText {
             if text.lang == langStr {
@@ -259,8 +257,14 @@ class ApphudHelper: ObservableObject {
             
             if prod.skProduct!.subscriptionPeriod != nil {
                 weeks = prod.skProduct!.subscriptionPeriod!.numberOfUnits / 7
-                weeks = weeks != 0 ? weeks : 1
-                week_price = "\(prod.skProduct!.price.intValue / weeks)\(prod.skProduct!.priceLocale.currencySymbol ?? "")"
+                print("prod.skProduct!.subscriptionPeriod")
+                print(prod.productId)
+                print(prod.skProduct!.subscriptionPeriod!.unit)
+                print(getSubscriptionDays(prod: prod))
+                weeks = getSubscriptionDays(prod: prod)
+                let weekPrice : Float = Float(prod.skProduct!.price.floatValue) / Float(weeks)
+                let endPrice : String = String(format: "%.2f", weekPrice)
+                week_price = "\(endPrice)\(prod.skProduct!.priceLocale.currencySymbol ?? "")"
             }
                 
             time = "\(prod.skProduct!.subscriptionPeriod!.numberOfUnits)"
@@ -281,11 +285,7 @@ class ApphudHelper: ObservableObject {
         self.skProdInfo21 = self.getSKProdInfo(productId: purchaseId21)
         self.skProdInfo22 = self.getSKProdInfo(productId: purchaseId22)
         self.skProdInfo23 = self.getSKProdInfo(productId: purchaseId23)
-        
-        print("self.skProdInfo21 \(self.skProdInfo21.purchaseId) \(self.skProdInfo21.price)")
-        print("self.skProdInfo22 \(self.skProdInfo22.purchaseId) \(self.skProdInfo22.price)")
-        print("self.skProdInfo23 \(self.skProdInfo23.purchaseId) \(self.skProdInfo23.price)")
-        
+                
     }
     
     func getSKProdInfo(productId : String) -> SKProdInfo {
@@ -296,6 +296,28 @@ class ApphudHelper: ObservableObject {
             }
         }
         return SKProdInfo(purchaseId: productId, price: "", time: "", trial_time: "", week_price: "")
+    }
+    
+    func getSubscriptionDays(prod : ApphudProduct) -> Int {
+        if prod.skProduct!.subscriptionPeriod != nil {
+            let period = prod.skProduct!.subscriptionPeriod!
+            var baseDays = 1
+            switch period.unit {
+            case .month:
+                baseDays = 30
+            case .week:
+                baseDays = 7
+            case .year:
+                baseDays = 365
+            case .day:
+                baseDays = 1
+            }
+            let perUnits = period.numberOfUnits
+            let weeks = baseDays * perUnits / 7 > 1 ? baseDays * perUnits / 7 : 1
+            return weeks
+        }
+        
+        return 1
     }
 }
 

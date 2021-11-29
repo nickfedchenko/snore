@@ -85,7 +85,7 @@ struct TrendsView: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 38).foregroundColor(Color("ButtonRed")).frame(height: 47)
                         Button(action: {
-                            DS.apphudHelper.quickPurchase()
+                            DS.viewControll.showPayWall = true
                         }){
                             Text("Upgrade").font(.system(size: 17)).foregroundColor(Color.white)
                         }
@@ -97,7 +97,7 @@ struct TrendsView: View {
                 }.background(Color.black.opacity(0.7).ignoresSafeArea())
             }
         }.onAppear(perform: {
-            self.isPremium = self.DS.apphudHelper.isPremium
+            self.isPremium = self.DS.apphudHelper.isPremium// || DS.isTest
         }).onReceive(self.DS.apphudHelper.$isPremium, perform: {val in
             self.isPremium = val
         })

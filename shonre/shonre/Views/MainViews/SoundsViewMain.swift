@@ -34,7 +34,7 @@ struct SoundsViewMain: View {
                     ZStack{
                         RoundedRectangle(cornerRadius: 38).foregroundColor(Color("ButtonRed")).frame(height: 47)
                         Button(action: {
-                            DS.apphudHelper.quickPurchase()
+                            DS.viewControll.showPayWall = true
                         }){
                             Text("Upgrade").font(.system(size: 17)).foregroundColor(Color.white)
                         }
@@ -51,7 +51,7 @@ struct SoundsViewMain: View {
                 self.showMixeBoard = val
             }
         }).onAppear(perform: {
-            self.isPremium = self.DS.apphudHelper.isPremium
+            self.isPremium = self.DS.apphudHelper.isPremium// || DS.isTest
         }).onReceive(self.DS.apphudHelper.$isPremium, perform: {val in
             self.isPremium = val
         })

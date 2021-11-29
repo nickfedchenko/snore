@@ -70,6 +70,10 @@ struct MainView: View {
             if viewControll.showOnboarding {
                 OnboardingView(isPresented: $viewControll.showOnboarding, selected: 0)
             }
+            
+            if viewControll.showPayWall {
+                OnboardingView(isPresented: $viewControll.showPayWall, selected: OnboardingPart.data.count - 1)
+            }
         }.onReceive(DS.viewControll.$showSaveMixe, perform: { val in
             withAnimation{
                 self.showSaveMixe = val
