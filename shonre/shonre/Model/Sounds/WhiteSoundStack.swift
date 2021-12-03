@@ -17,7 +17,6 @@ class WhiteSoundStack: ObservableObject {
     @Published var likedMixes : [String] = [String]()
     
     
-    
     // Утилитарные
     var cancellables = Set<AnyCancellable>()
     var CDHelper : WhiteSoundCDH = WhiteSoundCDH()
@@ -71,25 +70,30 @@ class WhiteSoundStack: ObservableObject {
         
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         for sound in toLoadImages {
-            let operation = DownloadOperation(session: URLSession.shared, downloadTaskURL: URL(string: sound.imageLink)!, completionHandler: { (imageTempFileUrl, response, error) in
-                let fileName = "img\(sound.FBid).jpeg"
-                let fileNameFull = documentDirectory.appendingPathComponent(fileName)
-                if let imageTempFileUrl = imageTempFileUrl {
-                    do {
-                        // Сохранение загруженой картинки
-                        let imageData = try Data(contentsOf: imageTempFileUrl)
-                        try imageData.write(to: fileNameFull)
-                        sound.imgFileName = fileName
-                        sound.uiImage = sound.getImage()
-                        self.CDHelper.saveWhiteSound(sound)
-                        
-                        print("Save Image \(fileName)")
-                    } catch {
-                        print("Error \(sound.imgFileName)")
+            let link = URL(string: sound.imageLink)
+            if link != nil {
+                let operation = DownloadOperation(session: URLSession.shared, downloadTaskURL: link!, completionHandler: { (imageTempFileUrl, response, error) in
+                    let fileName = "img\(sound.FBid).jpeg"
+                    let fileNameFull = documentDirectory.appendingPathComponent(fileName)
+                    if let imageTempFileUrl = imageTempFileUrl {
+                        do {
+                            // Сохранение загруженой картинки
+                            let imageData = try Data(contentsOf: imageTempFileUrl)
+                            try imageData.write(to: fileNameFull)
+                            sound.imgFileName = fileName
+                            sound.uiImage = sound.getImage()
+                            self.CDHelper.saveWhiteSound(sound)
+                            
+                            print("Save Image \(fileName)")
+                        } catch {
+                            print("Error \(sound.imgFileName)")
+                        }
                     }
-                }
-            })
-            queue.addOperation(operation)
+                })
+                queue.addOperation(operation)
+            } else {
+                print(sound.FBid)
+            }
         }
         
         let toLoadAudio = sounds.compactMap({getToLoadAudio($0)})

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Sense1.png",
+      "filename" : "SenseRec.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Sense2.png",
+      "filename" : "SenseRec2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Sense3.png",
+      "filename" : "SenseRec3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

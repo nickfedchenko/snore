@@ -16,7 +16,7 @@
 // Record View
 "Sleep Control" = "Sleep Control";
 "Sensitivity\nlevel" = "Sensitivity\nlevel";
-"Delay\nactivation" = "Delay\nactivation";
+"Delay\nactivation" = "Delay activation";
 
 
 // Results View
@@ -132,3 +132,8 @@
 "Разблокировать доступ к аналитике  сна" = "Unlock access to sleep analytics";
 "Разблокировать доступ к звукам для сна" = "Unblock sleep sounds";
 "Неограниченное число записей" = "Unlimited sleep sounds records";
+
+//
+"Filter sound" = "Filter sound";
+"Snoring" = "Snoring";
+"All" = "All";

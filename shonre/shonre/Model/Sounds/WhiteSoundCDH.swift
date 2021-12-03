@@ -41,7 +41,7 @@ class WhiteSoundCDH{
                 oldSound[0].url = sound.url
                 oldSound[0].type = sound.type.rawValue
                 oldSound[0].imageLink = sound.imageLink
-                oldSound[0].imgName = sound.imageLink
+                oldSound[0].imgName = sound.imgName
                 oldSound[0].fileName = sound.fileName
                 oldSound[0].imgFileName = sound.imgFileName
             } else {
@@ -51,7 +51,7 @@ class WhiteSoundCDH{
                 newSoundCore.url = sound.url
                 newSoundCore.type = sound.type.rawValue
                 newSoundCore.imageLink = sound.imageLink
-                newSoundCore.imgName = sound.imageLink
+                newSoundCore.imgName = sound.imgName
                 newSoundCore.fileName = sound.fileName
                 newSoundCore.imgFileName = sound.imgFileName
             }
@@ -80,7 +80,7 @@ class WhiteSoundCDH{
         var outSounds = [WhiteSound]()
         for soundCore in soundsCore{
             let soundType = SoundType(rawValue: soundCore.type ?? "All") ?? SoundType.All
-            let newSound = WhiteSound(FBid : soundCore.fbid ?? "", name : soundCore.name ?? "", url : soundCore.url ?? "" , fileName : soundCore.fileName, type : soundType, imgName : soundCore.imgName ?? "noimage", imgFileName : soundCore.imgFileName)
+            let newSound = WhiteSound(FBid : soundCore.fbid ?? "", name : soundCore.name ?? "", url : soundCore.url ?? "" , fileName : soundCore.fileName, type : soundType, imgName : soundCore.imgName ?? "noimage", imgFileName : soundCore.imgFileName, imageLink: soundCore.imageLink ?? "")
             outSounds.append(newSound)
             
         }

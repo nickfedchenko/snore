@@ -13,8 +13,10 @@ struct MainView: View {
     @EnvironmentObject var DS : DataStorage
     
     @State var showSaveMixe : Bool = false
+    @State var soundAnalyzerFilter : Bool = false
     
     @State var selectedTab : Int = 1
+    
     
     var body: some View {
         ZStack(alignment: .bottom){
@@ -54,6 +56,38 @@ struct MainView: View {
             SlideOverCard(possitionController: $viewControll.showChooseTime){
                 ChooseStopTimeComponent(possitionController: $viewControll.showChooseTime, stopPlay: DS.soundStack.soundPlayer.stopPlay)
             }.frame(width: UIScreen.main.bounds.width)
+            
+            SlideOverCard(possitionController: $viewControll.possitionFilter){
+                VStack{
+                    Capsule().frame(width: 76, height: 5).foregroundColor(.white.opacity(0.2)).padding(.top, 10)
+                    Text("Filter sound").foregroundColor(.white).font(.system(size: 24))
+                    
+                    HStack{
+                        Button(action: {
+                            DS.soundAnalyzer.filter = false
+                        }){
+                            Text("Запись всех звуков").foregroundColor(.white).font(.system(size: 21))
+                            Spacer()
+                            Image(!soundAnalyzerFilter ? "filteron" : "filteroff")
+                        }
+                    }.padding(.horizontal)
+                    Divider()
+                    HStack{
+                        Button(action: {
+                            DS.soundAnalyzer.filter = true
+                        }){
+                            Text("Только храп").foregroundColor(.white).font(.system(size: 21))
+                            Spacer()
+                            Image(soundAnalyzerFilter ? "filteron" : "filteroff")
+                        }
+                    }.padding(.horizontal)
+                    Spacer()
+                }.background(Color("MixerColor"))
+            }.frame(width: UIScreen.main.bounds.width).onAppear(perform: {
+                soundAnalyzerFilter = DS.soundAnalyzer.filter
+            }).onReceive(DS.soundAnalyzer.$filter, perform: {val in
+                soundAnalyzerFilter = val
+            })
             
             if showSaveMixe {
                 VStack{

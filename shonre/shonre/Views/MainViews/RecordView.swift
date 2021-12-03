@@ -19,83 +19,113 @@ struct RecordView: View {
     @State var showSensitivity : Bool = false
     @State var showDelayLounch : Bool = false
     
+    @State var possitionController : CardPosition = CardPosition.middle
+    
     
     let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack{
-            Spacer()
-            if UIScreen.main.bounds.width > 320 {
-                Text("Sleep Control").font(.system(size: 30, weight: .medium)).foregroundColor(.white).padding(.vertical)
-            }
-            
-            ZStack{
-                Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
-                VStack{
-                    Text(timeText.uppercased()).font(.system(size: UIScreen.main.bounds.width > 320 ? 36 : 24, weight: .medium)).foregroundColor(.white)
-                    Text(day).font(.system(size: 19, weight: .medium)).foregroundColor(.white)
-                    
+        ZStack{
+            VStack{
+                Spacer()
+                if UIScreen.main.bounds.width > 320 {
+                    Text("Sleep Control").font(.system(size: 30, weight: .medium)).foregroundColor(.white).padding(.vertical)
+                }
+                
+                ZStack{
+                    Image("RecordBack").resizable().aspectRatio(contentMode: .fit).frame(width: UIScreen.main.bounds.width)
+                    VStack{
+                        Text(timeText.uppercased()).font(.system(size: UIScreen.main.bounds.width > 320 ? 36 : 24, weight: .medium)).foregroundColor(.white)
+                        Text(day).font(.system(size: 19, weight: .medium)).foregroundColor(.white)
+                        
+                        Button(action: {
+                            if DS.soundAnalyzer.audioRecorder.isRecording {
+                                DS.soundAnalyzer.stopRecording()
+                            } else {
+                                sec = 0.0
+                                setSecTime()
+                                DS.soundAnalyzer.startRecording()
+                            }
+                        }){
+                            ZStack{
+                                Image(isRecording ? "RecPause" : "RecPlay")
+                                if isRecording {
+                                    Text(secTime).foregroundColor(.white).font(.system(size: 40, weight: .medium)).multilineTextAlignment(.center).frame(width: 200)
+                                }
+                            }
+                        }.onReceive(DS.soundAnalyzer.audioRecorder.$isRecording, perform: {val in
+                            self.isRecording = DS.soundAnalyzer.audioRecorder.isRecording
+                        })
+                    }
+                }.fixedSize()
+                
+                HStack{
                     Button(action: {
-                        if DS.soundAnalyzer.audioRecorder.isRecording {
-                            DS.soundAnalyzer.stopRecording()
-                        } else {
-                            sec = 0.0
-                            setSecTime()
-                            DS.soundAnalyzer.startRecording()
-                        }
+                        showSensitivity = true
                     }){
                         ZStack{
-                            Image(isRecording ? "RecPause" : "RecPlay")
-                            if isRecording {
-                                Text(secTime).foregroundColor(.white).font(.system(size: 40, weight: .medium)).multilineTextAlignment(.center).frame(width: 200)
+                            RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
+                            HStack{
+                                Image("SenseRec")
+                                Text("Sensitivity\nlevel").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
                             }
                         }
-                    }.onReceive(DS.soundAnalyzer.audioRecorder.$isRecording, perform: {val in
-                        self.isRecording = DS.soundAnalyzer.audioRecorder.isRecording
-                    })
-                }
-            }.fixedSize()
-            
-            HStack{
-                Button(action: {
-                    showSensitivity = true
-                }){
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
-                        HStack{
-                            Image("SenseRec")
-                            Text("Sensitivity\nlevel").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
+                    }
+                    Spacer()
+                    Button(action: {
+                        DS.viewControll.possitionFilter = .middle
+                    }){
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
+                            HStack{
+                                Image("filtericon")
+                                VStack{
+                                    Text("Filter sound").font(.system(size: 12, weight: .medium)).foregroundColor(Color("RecGray"))
+                                    Text(DS.soundAnalyzer.filter ? "Snoring" : "All").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
+                                }
+                            }
                         }
                     }
-                }
+                }.frame(width: 320)
+                
+                HStack{
+                    Button(action: {
+                        showDelayLounch = true
+                    }){
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
+                            HStack{
+                                Image("DeleayRec")
+                                Text("Delay\nactivation").font(.system(size: 12, weight: .medium)).foregroundColor(Color("RecGray"))
+                            }
+                        }
+                    }
+                }.frame(width: 320)
+
+                
+//                Button(action: {
+//                    DS.viewControll.possitionFilter = .middle
+//                    print("Show Show Show")
+//                }, label: {
+//                    Text("Show").foregroundColor(.white)
+//                })
+                
+    //            Button(action: {
+    //
+    //            }){
+    //                ZStack{
+    //                    RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(width: 283, height: 71)
+    //                    HStack{
+    //                        Image("AlarmRec")
+    //                        Text("Alarm clock").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
+    //                    }
+    //                }
+    //            }
+                
                 Spacer()
-                Button(action: {
-                    showDelayLounch = true
-                }){
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(height: 71)
-                        HStack{
-                            Image("DeleayRec")
-                            Text("Delay\nactivation").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
-                        }
-                    }
-                }
-            }.frame(width: 320)
-            
-//            Button(action: {
-//                
-//            }){
-//                ZStack{
-//                    RoundedRectangle(cornerRadius: 9).foregroundColor(Color("Plate")).frame(width: 283, height: 71)
-//                    HStack{
-//                        Image("AlarmRec")
-//                        Text("Alarm clock").font(.system(size: 14, weight: .medium)).foregroundColor(.white)
-//                    }
-//                }
-//            }
-            
-            Spacer()
-        }.background(Color("Back").ignoresSafeArea()).onReceive(timer, perform: {_ in
+            }.background(Color("Back").ignoresSafeArea())
+
+        }.onReceive(timer, perform: {_ in
             sec += 0.05
             setTime()
             setSecTime()

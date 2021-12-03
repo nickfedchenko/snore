@@ -19,10 +19,12 @@ class ViewControll: ObservableObject {
     @Published var showOnboarding : Bool = true
     
     @Published var showAddSoundButton : Bool = true
+    @Published var showFilter : Bool = true
     
     // Слайдовер
     @Published var showChooseTime : CardPosition = CardPosition.bottom
     @Published var possitionController : CardPosition = CardPosition.bottom
+    @Published var possitionFilter : CardPosition = CardPosition.bottom
     
     var showRateApp : Int = 0
     var cancellables = Set<AnyCancellable>()

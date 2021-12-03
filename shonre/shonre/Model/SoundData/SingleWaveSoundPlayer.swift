@@ -34,6 +34,10 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
             }
         }).store(in: &cancellables)
         
+        sound.$fileName.debounce(for: 0.0, scheduler: RunLoop.main).sink(receiveValue: {_ in
+            self.setAudio()
+        }).store(in: &cancellables)
+        
     }
     
     func pausePlay() {
@@ -85,8 +89,8 @@ class SingleWaveSoundPlayer : ObservableObject, Identifiable {
     }
     
     func getFullTime() -> String {
-        let m : Int = Int(self.sound.length) / 60
-        let s : Int = Int(self.sound.length) % 60
+        let m : Int = Int(self.sound.soundDuration) / 60
+        let s : Int = Int(self.sound.soundDuration) % 60
         return (m > 9 ? "\(m)" : "0\(m)") + ":" + (s > 9 ? "\(s)" : "0\(s)")
     }
     

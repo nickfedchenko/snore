@@ -14,7 +14,7 @@ class WhiteSound : Identifiable, ObservableObject, Codable {
     var name : String
     var url : String
     var type : SoundType
-    var imageLink : String = ""
+    var imageLink : String
     var imgName : String
     
     var nameru : String = ""
@@ -30,7 +30,7 @@ class WhiteSound : Identifiable, ObservableObject, Codable {
     
     @Published var uiImage : UIImage?
     
-    init(FBid : String, name : String, url : String, fileName : String?, type : SoundType, imgName : String, imgFileName : String?) {
+    init(FBid : String, name : String, url : String, fileName : String?, type : SoundType, imgName : String, imgFileName : String?, imageLink : String) {
         self.FBid = FBid
         self.name = name
         self.url = url
@@ -38,6 +38,7 @@ class WhiteSound : Identifiable, ObservableObject, Codable {
         self.type = type
         self.imgName = imgName
         self.imgFileName = imgFileName
+        self.imageLink = imageLink
         
         if imgFileName != nil {
             self.uiImage = self.getImage()
@@ -52,6 +53,7 @@ class WhiteSound : Identifiable, ObservableObject, Codable {
         self.fileName = fileName
         self.type = type
         self.imgName = imgName
+        self.imageLink = ""
     }
     
     required init(from decoder: Decoder) throws {

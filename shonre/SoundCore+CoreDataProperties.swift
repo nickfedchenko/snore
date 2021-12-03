@@ -2,7 +2,7 @@
 //  SoundCore+CoreDataProperties.swift
 //  shonre
 //
-//  Created by Александр Шендрик on 11.10.2021.
+//  Created by Александр Шендрик on 03.12.2021.
 //
 //
 
@@ -18,6 +18,7 @@ extension SoundCore {
 
     @NSManaged public var fileName: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var inDayCound: Int64
     @NSManaged public var length: Double
     @NSManaged public var started: Date?
     @NSManaged public var stoped: Date?
@@ -25,7 +26,7 @@ extension SoundCore {
     @NSManaged public var timeNoSnoring: Double
     @NSManaged public var timeSnoringRed: Double
     @NSManaged public var timeSnoringYellow: Double
-    @NSManaged public var inDayCound: Int64
+    @NSManaged public var soundDuration: Double
 
 }
 

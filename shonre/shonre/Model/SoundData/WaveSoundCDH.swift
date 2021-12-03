@@ -40,6 +40,7 @@ class WaveSoundCDH{
             oldSound[0].length = sound.length
             oldSound[0].started = sound.started
             oldSound[0].stoped = sound.stoped
+            oldSound[0].soundDuration = sound.soundDuration
             oldSound[0].timeInBed = sound.timeInBed
             oldSound[0].timeNoSnoring = sound.timeNoSnoring
             oldSound[0].timeSnoringRed = sound.timeSnoringRed
@@ -76,6 +77,7 @@ class WaveSoundCDH{
             newSound.length = sound.length
             newSound.started = sound.started
             newSound.stoped = sound.stoped
+            newSound.soundDuration = sound.soundDuration
             newSound.timeInBed = sound.timeInBed
             newSound.timeNoSnoring = sound.timeNoSnoring
             newSound.timeSnoringRed = sound.timeSnoringRed
@@ -145,7 +147,10 @@ class WaveSoundCDH{
                 newWaves.append(newSindgleWave)
             }
             
-            let newSound = Sound(id: soundCore.id ?? UUID(), waves: newWaves.sorted(by: {$0.number < $1.number}), timeInBed: soundCore.timeInBed, started: soundCore.started ?? Date(), stoped: soundCore.stoped ?? Date(), fileName: soundCore.fileName ?? "", inDayCound: Int(soundCore.inDayCound))
+            if soundCore.soundDuration != nil {
+                
+            }
+            let newSound = Sound(id: soundCore.id ?? UUID(), waves: newWaves.sorted(by: {$0.number < $1.number}), timeInBed: soundCore.timeInBed, started: soundCore.started ?? Date(), stoped: soundCore.stoped ?? Date(), fileName: soundCore.fileName ?? "", inDayCound: Int(soundCore.inDayCound), soundDuration: soundCore.soundDuration)
             outSounds.append(newSound)
             
         }

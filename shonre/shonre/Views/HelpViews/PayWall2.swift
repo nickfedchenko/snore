@@ -21,8 +21,8 @@ struct PayWall2: View {
                 }.frame(width: UIScreen.main.bounds.width * 0.8)
             }
             
-            Text("Get insights about your snore").foregroundColor(.white).font(.system(size: 30, weight: .bold)).multilineTextAlignment(.center).padding(.horizontal, 40)
-            Text("You can test snoring remedies and lifestyle changes to try to reduce").foregroundColor(.white.opacity(0.5)).font(.system(size: 20)).multilineTextAlignment(.center).padding(.horizontal, 30)
+            Text(DS.apphudHelper.curPayWallText2.text).foregroundColor(.white).font(.system(size: 30, weight: .bold)).multilineTextAlignment(.center).padding(.horizontal, 40)
+            Text(DS.apphudHelper.curPayWallText2.title).foregroundColor(.white.opacity(0.5)).font(.system(size: 20)).multilineTextAlignment(.center).padding(.horizontal, 30)
             HStack(alignment: .bottom){
                 if DS.apphudHelper.curPayWallText2.show1{
                 VStack{

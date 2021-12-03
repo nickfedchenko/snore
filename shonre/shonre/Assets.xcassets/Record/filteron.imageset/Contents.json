@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "DeleayRec.png",
+      "filename" : "filteron.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DeleayRec2.png",
+      "filename" : "filteron2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DeleayRec3.png",
+      "filename" : "filteron3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

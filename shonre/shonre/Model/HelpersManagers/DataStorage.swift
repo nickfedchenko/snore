@@ -66,7 +66,7 @@ class DataStorage : ObservableObject {
             self.soundStack.loadCD()
             self.viewControll.showOnboarding = !apphudHelper.isPremium
             self.soundAnalyzer.senceLevel = userdefault.double(forKey: "senceLevel")
-            self.PWnum = userdefault.integer(forKey: "PWnum")
+            self.PWnum = 0//userdefault.integer(forKey: "PWnum")
         }
         print("Apphud.userID()")
         print(Apphud.userID())

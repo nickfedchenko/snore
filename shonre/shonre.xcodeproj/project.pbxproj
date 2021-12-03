@@ -14,6 +14,7 @@
 		8B04B0B6274E4E7D00D61CB8 /* PayWall3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B04B0B5274E4E7D00D61CB8 /* PayWall3.swift */; };
 		8B04B0B8274E779200D61CB8 /* PayWallText2.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B04B0B7274E779200D61CB8 /* PayWallText2.json */; };
 		8B04B0BA274E79AB00D61CB8 /* PayWallText2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */; };
+		8B1D4356275A21A90077C472 /* SoundCutOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D4355275A21A90077C472 /* SoundCutOperation.swift */; };
 		8B25ECD02710151100871B02 /* SircleChartComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECCF2710151100871B02 /* SircleChartComponent.swift */; };
 		8B25ECD327101C3200871B02 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25ECD227101C3200871B02 /* PieChartView.swift */; };
 		8B35E4CE273046B600C7BD4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */; };
@@ -146,6 +147,8 @@
 		8B04B0B5274E4E7D00D61CB8 /* PayWall3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWall3.swift; sourceTree = "<group>"; };
 		8B04B0B7274E779200D61CB8 /* PayWallText2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PayWallText2.json; sourceTree = "<group>"; };
 		8B04B0B9274E79AB00D61CB8 /* PayWallText2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWallText2.swift; sourceTree = "<group>"; };
+		8B1D4355275A21A90077C472 /* SoundCutOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCutOperation.swift; sourceTree = "<group>"; };
+		8B1D4357275A52180077C472 /* WaveSounds2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WaveSounds2.xcdatamodel; sourceTree = "<group>"; };
 		8B25ECCF2710151100871B02 /* SircleChartComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SircleChartComponent.swift; sourceTree = "<group>"; };
 		8B25ECD227101C3200871B02 /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		8B35E4CD273046B600C7BD4A /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
@@ -439,8 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				8BABCEBE2706E13600BBAE54 /* DataStorage.swift */,
-				8BF4836B270C6C9A002D0A4D /* SoundAnalyzer.swift */,
-				8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */,
 				8BD5474B2715632000AAD506 /* ViewControll.swift */,
 				8BD5477D27157AE300AAD506 /* ApphudHelper.swift */,
 				8BD5478A2715B4D700AAD506 /* Bundle-Decodable.swift */,
@@ -643,12 +644,15 @@
 		8BF48370270C6F52002D0A4D /* SoundData */ = {
 			isa = PBXGroup;
 			children = (
+				8B1D4355275A21A90077C472 /* SoundCutOperation.swift */,
 				8BF72919270D8005000CBDA4 /* AudioRecorder.swift */,
 				8BF48371270C6F76002D0A4D /* SingleWave.swift */,
 				8BF48373270C725B002D0A4D /* Sound.swift */,
 				8BF7291D270D9CB5000CBDA4 /* SingleWaveSoundPlayer.swift */,
 				8BF72923270DAE93000CBDA4 /* WaveSoundCDH.swift */,
 				8B998AFA270ED0DA00CC32F8 /* WaveSoundPlayer.swift */,
+				8BF4836B270C6C9A002D0A4D /* SoundAnalyzer.swift */,
+				8BD5471D2714493000AAD506 /* CalcSoundStaticics.swift */,
 			);
 			path = SoundData;
 			sourceTree = "<group>";
@@ -981,6 +985,7 @@
 				8BD5474A2715628300AAD506 /* MixSoundCore+CoreDataProperties.swift in Sources */,
 				8BD5477827157A6300AAD506 /* ChooseStopTimeComponent.swift in Sources */,
 				8BABCECE2706E84500BBAE54 /* SettingsView.swift in Sources */,
+				8B1D4356275A21A90077C472 /* SoundCutOperation.swift in Sources */,
 				8B04B0B6274E4E7D00D61CB8 /* PayWall3.swift in Sources */,
 				8BF72922270DAE6F000CBDA4 /* WaveSounds.xcdatamodeld in Sources */,
 				8BABCED627071D3100BBAE54 /* ChartColumnComponent.swift in Sources */,
@@ -1247,7 +1252,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.0;
+				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1286,7 +1291,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.0.0;
+				MARKETING_VERSION = 10.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.alexanderusachev.snoreapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1470,9 +1475,10 @@
 		8BF72920270DAE6F000CBDA4 /* WaveSounds.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				8B1D4357275A52180077C472 /* WaveSounds2.xcdatamodel */,
 				8BF72921270DAE6F000CBDA4 /* WaveSounds.xcdatamodel */,
 			);
-			currentVersion = 8BF72921270DAE6F000CBDA4 /* WaveSounds.xcdatamodel */;
+			currentVersion = 8B1D4357275A52180077C472 /* WaveSounds2.xcdatamodel */;
 			path = WaveSounds.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

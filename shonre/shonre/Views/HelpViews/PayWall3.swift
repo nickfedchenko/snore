@@ -14,8 +14,8 @@ struct PayWall3: View {
     var body: some View {
         VStack{
             Spacer()
-            Text("Get insights about your snore").foregroundColor(.white).font(.system(size: 30, weight: .bold)).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 40)
-            Text("You can test snoring remedies and lifestyle changes to try to reduce ").foregroundColor(.white.opacity(0.5)).font(.system(size: 20)).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 30)
+            Text(DS.apphudHelper.curPayWallText2.text).foregroundColor(.white).font(.system(size: 30, weight: .bold)).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 40)
+            Text(DS.apphudHelper.curPayWallText2.title).foregroundColor(.white.opacity(0.5)).font(.system(size: 20)).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal, 30)
             ZStack{
                 Rectangle().foregroundColor(Color("PW2Back"))
                 VStack(alignment: .leading){
